@@ -15,6 +15,7 @@ export default function Footer() {
           <h3 className="text-white font-bold mb-4 uppercase text-xs tracking-widest">Resources</h3>
           <ul className="text-sm space-y-2">
             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
+            <li><Link href="/download" className="hover:text-white transition-colors">Download</Link></li>
             <li><Link href="/docs" className="hover:text-white transition-colors">Documentation</Link></li>
             <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
             <li><Link href="/support" className="hover:text-white transition-colors">Support</Link></li>
