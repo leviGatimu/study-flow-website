@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Download, Terminal, Book, Shield, Brain, ChevronRight, Check, Search } from "lucide-react";
+import { Download, Terminal, Book, Shield, Brain, ChevronRight, Check, Search, Cpu, HardDrive, Keyboard, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function Docs() {
@@ -10,9 +10,11 @@ export default function Docs() {
   const sections = [
     { id: "getting-started", title: "Getting Started", icon: Terminal },
     { id: "installation", title: "Installation", icon: Download },
+    { id: "workspaces", title: "Workspaces", icon: HardDrive },
     { id: "ai-config", title: "AI Configuration", icon: Brain },
     { id: "privacy", title: "Privacy & Security", icon: Shield },
-    { id: "usage", title: "Standard Usage", icon: Book },
+    { id: "shortcuts", title: "Keyboard Shortcuts", icon: Keyboard },
+    { id: "troubleshooting", title: "Troubleshooting", icon: HelpCircle },
   ];
 
   return (
@@ -81,6 +83,24 @@ export default function Docs() {
               </div>
             </section>
 
+            {/* Workspaces */}
+            <section id="workspaces" className="space-y-8 scroll-mt-24">
+              <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">Workspace Management</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Workspaces are the primary way to organize your studies. Each workspace has its own isolated database of documents and notes.
+              </p>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="wp-card space-y-3">
+                  <h4 className="font-bold">Creating a Workspace</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">Click the "+" icon in the left sidebar to create a new workspace. Give it a name like "Computer Science 101" or "Dissertation Research".</p>
+                </div>
+                <div className="wp-card space-y-3">
+                  <h4 className="font-bold">Supported File Types</h4>
+                  <p className="text-sm text-gray-600 leading-relaxed">You can import PDF, DOCX, TXT, and Markdown files. StudyFlow will automatically index them for local search.</p>
+                </div>
+              </div>
+            </section>
+
             {/* AI Config */}
             <section id="ai-config" className="space-y-8 scroll-mt-24">
               <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">AI Configuration</h2>
@@ -94,11 +114,11 @@ export default function Docs() {
                   </div>
                   <div className="space-y-2">
                     <p className="font-bold">Using Google Gemini</p>
-                    <p className="text-sm text-gray-600">Navigate to Settings &gt; Intelligence and paste your API key. We recommend using Gemini 1.5 Pro for the best results.</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">Navigate to <strong>Settings &gt; Intelligence</strong> and paste your API key. We recommend using <strong>Gemini 1.5 Pro</strong> or <strong>Flash</strong> for optimal performance.</p>
                   </div>
                 </div>
                 <div className="pt-4 border-t border-gray-100">
-                  <Link href="#" className="text-sm text-[#21759b] font-bold hover:underline">How to get a Gemini API Key &rarr;</Link>
+                  <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-sm text-[#21759b] font-bold hover:underline">Get a Gemini API Key from Google AI Studio &rarr;</a>
                 </div>
               </div>
             </section>
@@ -106,38 +126,74 @@ export default function Docs() {
             {/* Privacy */}
             <section id="privacy" className="space-y-8 scroll-mt-24">
               <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">Privacy & Security</h2>
-              <div className="prose prose-gray max-w-none text-gray-700 space-y-4">
+              <div className="prose prose-gray max-w-none text-gray-700 space-y-4 leading-relaxed">
                 <p>
                   StudyFlow is built on the principle of <strong>Local-First</strong>. This means your study notes, document summaries, and personal data never leave your machine unless you explicitly choose to export them.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-6">
-                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800 text-sm">
+                <div className="grid md:grid-cols-2 gap-4 mt-6 text-sm">
+                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800">
                     <Check size={18} />
                     Local SQLite Database
                   </div>
-                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800 text-sm">
+                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800">
                     <Check size={18} />
-                    AES-256 Encryption
+                    AES-256 Content Encryption
+                  </div>
+                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800">
+                    <Check size={18} />
+                    Zero Cloud Dependencies
+                  </div>
+                  <div className="flex items-center gap-3 bg-green-50 p-4 rounded text-green-800">
+                    <Check size={18} />
+                    Privacy-Focused AI Calls
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* Usage */}
-            <section id="usage" className="space-y-8 scroll-mt-24 pb-20">
-              <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">Standard Usage</h2>
-              <p className="text-gray-700 leading-relaxed">
-                StudyFlow organizes your learning into <strong>Workspaces</strong> and <strong>Knowledge Blocks</strong>.
-              </p>
-              <div className="space-y-4">
+            {/* Keyboard Shortcuts */}
+            <section id="shortcuts" className="space-y-8 scroll-mt-24">
+              <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">Keyboard Shortcuts</h2>
+              <p className="text-gray-700 leading-relaxed">Boost your productivity with these built-in shortcuts:</p>
+              <div className="bg-gray-50 border border-gray-200 rounded overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-100 border-b border-gray-200">
+                      <th className="px-6 py-3 text-left font-bold text-gray-700">Action</th>
+                      <th className="px-6 py-3 text-left font-bold text-gray-700">Shortcut</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    {[
+                      { a: "Quick Search", s: "Ctrl + K" },
+                      { a: "New Workspace", s: "Ctrl + N" },
+                      { a: "Toggle AI Chat", s: "Ctrl + J" },
+                      { a: "Save Note", s: "Ctrl + S" },
+                      { a: "Import Files", s: "Ctrl + O" },
+                      { a: "Settings", s: "Ctrl + ," }
+                    ].map((row, i) => (
+                      <tr key={i} className="hover:bg-white transition-colors">
+                        <td className="px-6 py-4 text-gray-600">{row.a}</td>
+                        <td className="px-6 py-4 font-mono text-[#21759b]">{row.s}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Troubleshooting */}
+            <section id="troubleshooting" className="space-y-8 scroll-mt-24 pb-20">
+              <h2 className="text-2xl font-semibold border-b border-gray-100 pb-4">Troubleshooting</h2>
+              <div className="space-y-6">
                 {[
-                  { t: "Create a Workspace", d: "Start by creating a new workspace for your subject or project." },
-                  { t: "Import Documents", d: "Drag and drop PDFs or text files to add them to your knowledge base." },
-                  { t: "Generate Insights", d: "Use the AI toggle to summarize complex topics or find connections between documents." }
+                  { q: "The app won't open on Windows?", a: "Ensure you have the latest .NET Desktop Runtime installed. If you see a SmartScreen warning, click 'More Info' and then 'Run Anyway'." },
+                  { q: "AI isn't responding?", a: "Verify your API key in Settings. Make sure you have an active internet connection and that your key has remaining quota." },
+                  { q: "My files aren't importing?", a: "Check that the files aren't open in another program and that they are in a supported format (PDF, DOCX, TXT)." }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start border-l-4 border-gray-100 pl-6 py-2">
-                    <div className="font-bold text-[#2c3338] min-w-[150px]">{item.t}</div>
-                    <div className="text-gray-600 text-sm">{item.d}</div>
+                  <div key={i} className="space-y-2">
+                    <p className="font-bold text-[#2c3338]">{item.q}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{item.a}</p>
                   </div>
                 ))}
               </div>
