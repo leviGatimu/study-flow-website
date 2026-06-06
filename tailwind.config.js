@@ -13,7 +13,8 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        heading: ["Inter", "sans-serif"],
+        sans: ["var(--font-jakarta)", "Inter", "sans-serif"],
+        heading: ["var(--font-jakarta)", "sans-serif"],
       },
     },
   },

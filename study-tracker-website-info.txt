@@ -1,0 +1,193 @@
+Study & Assignment Tracker
+
+Product Overview
+Study & Assignment Tracker is a local-first personal web app for students who want one place to manage schoolwork, revision, deadlines, exam preparation, and study habits. It is designed to help a student stay organized, track daily tasks, review completed work, and plan ahead without needing a login or cloud account. The app runs locally, stores data in SQLite through Prisma, and is intended for private personal use.
+
+Core Purpose
+The app helps the user:
+- organize weekly classes and recurring study blocks
+- automatically generate daily tasks from a weekly timetable
+- track homework and revision by day
+- mark tasks as complete and review progress
+- view calendar-based workload and history
+- manage recurring schedule templates without editing code
+- support broader study habits with additional academic tools
+
+Primary Workflow
+1. The user defines recurring schedule templates for subjects, times, deadlines, and task type.
+2. The app automatically generates daily task instances from those templates.
+3. The dashboard shows what needs to be done today, what is coming tomorrow, and how much has been completed.
+4. The user can open the calendar to inspect any date and its tasks.
+5. The user can manually add one-off tasks or adjust recurring templates.
+6. Completed work is stored in history for later review.
+
+Main Features
+
+1. Dashboard
+- Clean home screen and command center
+- Displays the current date and time
+- Shows an inspirational quote at the top
+- Presents today's schedule in time order
+- Distinguishes task types visually:
+  - HOMEWORK: solid primary border
+  - REVISION: dashed secondary/orange border
+- Includes one-click task completion controls
+- Shows daily progress through a progress bar or progress widget
+- Highlights tomorrow's tasks so the user can prepare in advance
+- Designed for focus, clarity, and fast daily use
+
+2. Full Calendar View
+- Month or week style calendar grid
+- Displays all scheduled assignments and revision blocks
+- Uses color indicators to show which days contain homework or revision
+- Allows clicking a day to open a modal with that day's tasks
+- Shows subjects, times, and deadline information for the selected date
+- Helps the user visualize workload across the month
+
+3. Manual Input and Schedule Management
+- Add one-off tasks manually
+- Create new recurring schedule templates
+- Edit existing templates
+- Delete templates
+- Manage the weekly timetable without touching code
+- Useful when a semester schedule changes or new classes are added
+
+4. History Page
+- Shows all completed tasks
+- Filters completed work by time range, such as:
+  - last 7 days
+  - last 30 days
+  - all time
+- Helps the user review what has already been finished
+- Acts as a record of effort and consistency
+
+5. Local Automation
+- Every time the dashboard loads, the app checks the current day of week
+- It looks up matching schedule templates
+- It generates task instances for the current calendar date if they do not already exist
+- This keeps the daily task list accurate and ready automatically
+- Prevents duplicated tasks through existence checks
+
+Task Types
+The app supports two task categories:
+- HOMEWORK
+- REVISION
+
+These are used throughout the dashboard, calendar, history, and schedule management views so the user can immediately recognize the purpose of each task.
+
+Weekly Schedule Engine
+The recurring schedule is stored as templates and turned into daily tasks automatically. Each template contains:
+- day of week
+- subject
+- start time
+- end time
+- deadline day
+- task type
+
+This structure allows the app to behave like a recurring timetable engine rather than a static to-do list.
+
+Database Model
+The local database uses SQLite with Prisma ORM.
+
+Main models:
+- ScheduleTemplate
+  - stores weekly recurring timetable items
+- Task
+  - stores daily task instances generated from templates or created manually
+
+Behavior:
+- templates are the source of truth for recurring study blocks
+- tasks are the actual dated items the user completes
+- completed tasks remain visible in history
+
+Study Schedule Seed Data
+The app ships with a predefined weekly routine that can be seeded into the database.
+
+Monday
+- Networking, 20:00 - 20:30, deadline Monday, HOMEWORK
+- Javascript, 20:30 - 21:30, deadline Monday, HOMEWORK
+- Embedded system, 20:00 - 20:30, deadline Tuesday, HOMEWORK
+
+Tuesday
+- PHP, 20:00 - 21:30, deadline Wednesday, HOMEWORK
+- Entrepreneurship, 21:30 - 22:00, deadline Tuesday, HOMEWORK
+- English, 22:00 - 23:30, deadline Tuesday, HOMEWORK
+
+Wednesday
+- Physics, 19:00 - 21:30, deadline Friday, HOMEWORK
+- Database, 21:30 - 22:30, deadline Thursday, HOMEWORK
+- C programming, 22:30 - 23:30, deadline Thursday, HOMEWORK
+
+Thursday
+- Math, 19:00 - 21:30, deadline Sunday, HOMEWORK
+- Web UI, 21:30 - 22:30, deadline Thursday, HOMEWORK
+- Physics, 22:30 - 00:00, deadline Thursday, HOMEWORK
+
+Friday
+- Math revision, 20:00 - 21:30, deadline Friday, REVISION
+- C revision, 21:30 - 22:30, deadline Friday, REVISION
+- Physics revision, 22:30 - 00:00, deadline Friday, REVISION
+
+Saturday
+- Javascript revision, 18:00 - 20:30, deadline Saturday, REVISION
+- Physics revision, 20:30 - 22:00, deadline Saturday, REVISION
+
+Sunday
+- Embedded system revision, 19:00 - 20:30, deadline Sunday, REVISION
+- PHP revision, 20:30 - 22:00, deadline Sunday, REVISION
+
+Additional Study Tools in the App
+The broader app includes more than the study tracker itself. It also contains a full academic workspace with tools such as:
+- AI study assistant
+- focus mode
+- homework management
+- exam tracking
+- marks and grades tracking
+- subject and resource management
+- notes and AI notes
+- project tracking
+- timetable tools
+- calculator
+- Bible or quote-related page
+- insights and progress views
+- ranking or streak-style motivation systems
+
+These tools make the app feel like a complete student workstation rather than only a task list.
+
+Navigation Structure
+The app uses a sidebar-style navigation with sections for:
+- Dashboard
+- Calendar
+- History
+- Manage Schedule
+- and additional study tools such as homework, exams, subjects, resources, notes, projects, settings, and focus tools
+
+Design Goals
+- clean and modern UI
+- easy to scan during a busy study session
+- responsive layout for desktop and mobile
+- wide-screen friendly layouts for multi-panel work
+- strong visual distinction between homework and revision
+- low-friction daily interaction
+- fast access to tasks and schedule data
+
+Audience
+This product is meant for:
+- students who want a private study planner
+- learners who need a recurring timetable
+- users who want to track homework and revision separately
+- anyone who wants a local-only academic productivity tool
+
+Key Selling Points
+- local-only and private
+- no login required
+- automatic daily task generation
+- recurring weekly template system
+- homework and revision are clearly separated
+- dashboard, calendar, history, and schedule management are built in
+- supports both planning and execution
+- designed to help the user stay consistent and prepared
+
+Short Marketing Summary
+Study & Assignment Tracker is a private, local-only student productivity app that turns a weekly timetable into actionable daily tasks, helps the user complete homework and revision on time, and keeps a full record of progress across dashboard, calendar, history, and schedule management views.
+
