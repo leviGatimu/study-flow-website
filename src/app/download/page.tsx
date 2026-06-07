@@ -3,6 +3,8 @@ import {
   ArrowUpRight,
   BookOpen,
   Check,
+  CircleDashed,
+  Clock,
   Download,
   HardDrive,
   KeyRound,
@@ -81,6 +83,36 @@ const requirements = [
   { icon: <HardDrive size={18} />, t: "~400 MB free disk", d: "for the app + your local database" },
   { icon: <WifiOff size={18} />, t: "No internet required", d: "only optional AI calls go online" },
   { icon: <Lock size={18} />, t: "No account on our servers", d: "everything stays on your machine" },
+];
+
+const roadmap = [
+  {
+    status: "Shipped",
+    dot: "bg-emerald-500",
+    badge: "bg-emerald-100 text-emerald-700",
+    icon: <Check size={15} className="text-emerald-500" />,
+    items: [
+      "Windows 10/11 desktop app",
+      "Recurring timetable engine",
+      "AI tutor, buddy & notes",
+      "Focus mode, ranks & streaks",
+      "Marks, goals & insights",
+    ],
+  },
+  {
+    status: "In progress",
+    dot: "bg-blue-500",
+    badge: "bg-blue-100 text-blue-700",
+    icon: <CircleDashed size={15} className="text-blue-500" />,
+    items: ["macOS build (Silicon & Intel)", "Portable Windows build"],
+  },
+  {
+    status: "Planned",
+    dot: "bg-amber-500",
+    badge: "bg-amber-100 text-amber-700",
+    icon: <Clock size={15} className="text-amber-500" />,
+    items: ["Linux build (AppImage)", "Mobile companion view", "More themes & accent colours"],
+  },
 ];
 
 export default function DownloadPage() {
@@ -217,6 +249,45 @@ export default function DownloadPage() {
               </div>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Roadmap */}
+      <section id="roadmap" className="px-6 py-16 lg:py-24 scroll-mt-24">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal className="max-w-2xl mb-12">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">The plan</span>
+            <h2 className="font-display text-4xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[0.98] mt-4">
+              Where Study Flow is <span className="text-blue-600">headed.</span>
+            </h2>
+            <p className="text-lg text-slate-500 leading-relaxed mt-5">
+              Built in the open. Here&apos;s what&apos;s shipped, what we&apos;re working on, and what&apos;s coming next.
+            </p>
+          </ScrollReveal>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {roadmap.map((col, i) => (
+              <ScrollReveal key={col.status} delay={i * 0.08}>
+                <div className="h-full bg-white rounded-[1.75rem] p-7 border border-black/[0.06] shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-2.5">
+                      <span className={`w-2.5 h-2.5 rounded-full ${col.dot}`} />
+                      <span className="font-display text-lg font-semibold text-slate-900">{col.status}</span>
+                    </div>
+                    <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full ${col.badge}`}>{col.items.length}</span>
+                  </div>
+                  <ul className="space-y-3">
+                    {col.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-slate-600">
+                        <span className="mt-0.5 flex-shrink-0">{col.icon}</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -13,6 +13,8 @@ const columns = [
       { label: "Features", href: "/#features" },
       { label: "Download", href: "/download" },
       { label: "Documentation", href: "/docs" },
+      { label: "What's new", href: "/changelog" },
+      { label: "Roadmap", href: "/download#roadmap" },
     ],
   },
   {
