@@ -21,6 +21,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import MacbookMockup from "@/components/MacbookMockup";
 import ScrollReveal from "@/components/ScrollReveal";
+import VideoEmbed from "@/components/VideoEmbed";
 
 const blobRadii = [
   "42% 58% 63% 37% / 41% 44% 56% 59%",
@@ -53,6 +54,22 @@ export default function Home() {
 
       {/* Full-screen hero */}
       <Hero />
+
+      {/* Demo video */}
+      <section className="px-6 pt-20 lg:pt-28">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal className="text-center max-w-2xl mx-auto mb-10">
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">See it in action</span>
+            <h2 className="font-display text-4xl md:text-6xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.98] mt-4">
+              Watch the <span className="text-blue-600 dark:text-blue-400">quick tour.</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal className="relative">
+            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-blue-300/30 dark:bg-blue-600/20 blur-2xl" />
+            <VideoEmbed id="Xcjc0py2L-U" title="Study Flow — quick tour" />
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* Features with splash shapes */}
       <section id="features" className="px-6 py-28 lg:py-36">
