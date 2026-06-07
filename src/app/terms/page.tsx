@@ -8,27 +8,27 @@ export default function Terms() {
     {
       icon: <FileText className="text-blue-600" />,
       title: "1. Acceptance of Terms",
-      content: "By downloading or using StudyFlow, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use the software."
+      content: "By downloading or using Study Flow, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please do not use the software."
     },
     {
       icon: <Scale className="text-blue-600" />,
       title: "2. Open Source License",
-      content: "StudyFlow is distributed under an open-source license. You are free to use, modify, and distribute the software in accordance with the terms of that license (found in our GitHub repository)."
+      content: "Study Flow is distributed under an open-source license. You are free to use, modify, and distribute the software in accordance with the terms of that license (found in our GitHub repository)."
     },
     {
       icon: <UserCheck className="text-blue-600" />,
       title: "3. User Responsibility",
-      content: "You are responsible for your own data and the API keys you provide. StudyFlow is provided 'as is' without any warranties. We are not responsible for any data loss or issues arising from the use of third-party AI providers."
+      content: "You are responsible for your own data and the API keys you provide. Study Flow is provided 'as is' without any warranties. We are not responsible for any data loss or issues arising from the use of third-party AI providers."
     },
     {
       icon: <ShieldAlert className="text-blue-600" />,
       title: "4. Intellectual Property",
-      content: "The StudyFlow name, logo, and original website content are the property of the StudyFlow project and its contributors. While the software itself is open-source, the branding and trademarks remain protected."
+      content: "The Study Flow name, logo, and original website content are the property of the Study Flow project and its contributors. While the software itself is open-source, the branding and trademarks remain protected."
     },
     {
       icon: <Gavel className="text-blue-600" />,
       title: "5. Limitation of Liability",
-      content: "In no event shall StudyFlow, its developers, or contributors be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the software, even if StudyFlow has been notified of the possibility of such damage."
+      content: "In no event shall Study Flow, its developers, or contributors be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the software, even if Study Flow has been notified of the possibility of such damage."
     },
     {
       icon: <Info className="text-blue-600" />,
@@ -54,7 +54,7 @@ export default function Terms() {
               Terms of <span className="text-blue-600">Service</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              The rules and guidelines for using the StudyFlow platform.
+              The rules and guidelines for using the Study Flow platform.
             </p>
           </div>
         </section>

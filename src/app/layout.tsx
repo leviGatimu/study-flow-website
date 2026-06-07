@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const jakarta = Plus_Jakarta_Sans({ 
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-});
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Study Flow | Elite Academic Workstation",
-  description: "Offline-first productivity suite for high-performance students.",
+  title: "Study Flow | A Private, Local-First Study Workstation",
+  description:
+    "Turn your weekly timetable into an automated daily agenda. Homework, revision and exams — all in one private, offline study app.",
 };
 
 export default function RootLayout({
@@ -20,12 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jakarta.variable}>
+    <html lang="en">
       <body className="antialiased flex flex-col min-h-screen font-sans">
+        <SmoothScroll />
         <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

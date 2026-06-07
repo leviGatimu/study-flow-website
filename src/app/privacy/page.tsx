@@ -21,7 +21,7 @@ export default function Privacy() {
               Privacy <span className="text-blue-600">Policy</span>
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              Your privacy is our priority. Learn how StudyFlow protects your personal and academic data.
+              Your privacy is our priority. Learn how Study Flow protects your personal and academic data.
             </p>
           </div>
         </section>
@@ -33,7 +33,7 @@ export default function Privacy() {
               {
                 icon: <Lock className="text-blue-600" />,
                 title: "1. Data Sovereignty",
-                content: "StudyFlow is built on a local-first architecture. This means that by default, all your study notes, document summaries, and personal configurations are stored exclusively on your local machine. We do not have access to your data, and we do not store it on our servers."
+                content: "Study Flow is built on a local-first architecture. This means that by default, all your study notes, document summaries, and personal configurations are stored exclusively on your local machine. We do not have access to your data, and we do not store it on our servers."
               },
               {
                 icon: <ShieldCheck className="text-blue-600" />,
@@ -42,7 +42,7 @@ export default function Privacy() {
                 list: [
                   "Your API key is stored locally and encrypted.",
                   "Data sent to the AI provider is subject to their own privacy policies.",
-                  "StudyFlow does not intercept or log these communications."
+                  "Study Flow does not intercept or log these communications."
                 ]
               },
               {

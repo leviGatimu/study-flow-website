@@ -1,240 +1,193 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Check, Shield, Zap, Calendar, Database, HardDrive, Brain, Focus, BookOpen, Clock, ChevronRight, PlayCircle, Lock, Layout, Sparkles, Flame, Trophy } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  CalendarDays,
+  Check,
+  Database,
+  Flame,
+  Lock,
+  Shield,
+  Sparkles,
+  Target,
+  WifiOff,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
-import PhoneMockup from "@/components/PhoneMockup";
+import Hero from "@/components/Hero";
 import MacbookMockup from "@/components/MacbookMockup";
+import ScrollReveal from "@/components/ScrollReveal";
+
+const blobRadii = [
+  "42% 58% 63% 37% / 41% 44% 56% 59%",
+  "63% 37% 47% 53% / 38% 63% 37% 62%",
+  "39% 61% 38% 62% / 58% 39% 61% 42%",
+  "58% 42% 64% 36% / 49% 56% 44% 51%",
+  "47% 53% 35% 65% / 64% 47% 53% 36%",
+  "61% 39% 56% 44% / 36% 58% 42% 64%",
+];
+
+const features = [
+  { icon: <Zap />, chip: "bg-blue-600", blob: "bg-blue-200", title: "Auto-built agenda", desc: "Your weekly templates turn into a precise daily to-do list at midnight. Wake up, execute." },
+  { icon: <Target />, chip: "bg-emerald-500", blob: "bg-emerald-200", title: "Focus mode", desc: "Mute everything and lock into one study block at a time, with a live countdown." },
+  { icon: <Flame />, chip: "bg-amber-500", blob: "bg-amber-200", title: "Streaks & XP", desc: "Every finished task feeds your streak and level — momentum you can actually see." },
+  { icon: <CalendarDays />, chip: "bg-indigo-500", blob: "bg-indigo-200", title: "Workload heatmap", desc: "Spot exam clusters and deadline pile-ups weeks before they become an emergency." },
+  { icon: <Sparkles />, chip: "bg-sky-500", blob: "bg-sky-200", title: "On-device AI", desc: "A private study assistant for notes, summaries and exam prep — nothing leaves your machine." },
+  { icon: <Lock />, chip: "bg-slate-900", blob: "bg-slate-200", title: "Local & private", desc: "Everything lives in a local SQLite database. No login, no cloud, no tracking. Ever." },
+];
+
+const laptopPoints = [
+  { t: "Set your timetable once", d: "Add subjects, times and deadlines as recurring templates — no code, no spreadsheets." },
+  { t: "Wake up to a ready day", d: "Today's homework and revision are generated automatically, in time order." },
+  { t: "Review your whole semester", d: "Calendar, history and insights keep every bit of effort in one place." },
+];
 
 export default function Home() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 }
-    }
-  };
-
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
-  };
-
   return (
-    <div className="relative min-h-screen">
-      <div className="bg-mesh" />
+    <div className="relative">
+      <div className="grain" />
 
-      {/* Hero Section */}
-      <section className="pt-40 pb-32 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
-          <motion.div 
-            variants={container}
-            initial="hidden"
-            animate="show"
-            className="space-y-10 relative z-10"
-          >
-            <motion.div variants={item} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-100/50 backdrop-blur-md text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] border border-blue-200/50">
-              <Sparkles size={12} className="animate-pulse" />
-              Revolutionizing Academic Privacy
-            </motion.div>
-            
-            <motion.h1 variants={item} className="text-7xl md:text-8xl font-black text-slate-900 leading-[0.9] tracking-tighter">
-              Elite Workspace <br />
-              <span className="text-gradient italic">for Scholars.</span>
-            </motion.h1>
-            
-            <motion.p variants={item} className="text-2xl text-slate-600 leading-relaxed max-w-xl font-medium">
-              StudyFlow is the definitive local-first workstation. Secure your data, automate your routine, and master your syllabus with zero-cloud dependencies.
-            </motion.p>
-            
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-6 pt-4">
-              <Link href="/download" className="btn-shiny flex items-center justify-center gap-3 text-lg px-12 py-5">
-                <Download size={22} />
-                Download StudyFlow
-              </Link>
-              <button className="flex items-center gap-4 font-bold text-slate-900 hover:text-blue-600 transition-all group">
-                <div className="w-14 h-14 rounded-full border-2 border-slate-200 flex items-center justify-center group-hover:border-blue-600 group-hover:bg-blue-50 transition-all">
-                  <PlayCircle size={24} />
-                </div>
-                <span className="text-lg">Product Tour</span>
-              </button>
-            </motion.div>
+      {/* Full-screen hero */}
+      <Hero />
 
-            <motion.div variants={item} className="flex items-center gap-10 pt-6">
-              <div className="flex -space-x-4">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-slate-200 overflow-hidden shadow-sm">
-                    <img src={`https://i.pravatar.cc/150?img=${i+20}`} alt="Scholar" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-              <div className="space-y-1">
-                 <p className="text-sm font-black text-slate-900 leading-none">Global Academic Trust</p>
-                 <p className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-none">10,000+ Active Scholars</p>
-              </div>
-            </motion.div>
-          </motion.div>
-          
-          <div className="relative flex justify-center lg:justify-end">
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-blue-500/20 blur-[130px] rounded-full" />
-             <PhoneMockup screen="dashboard" />
-             
-             {/* Dynamic Badges */}
-             <motion.div 
-               animate={{ y: [0, -15, 0] }}
-               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-               className="absolute top-1/4 -left-12 glass-container p-6 rounded-[2rem] hidden xl:flex items-center gap-5 border-blue-600/10 shadow-2xl shadow-blue-500/10"
-             >
-                <div className="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center text-green-600">
-                  <Check size={28} strokeWidth={3} />
-                </div>
-                <div>
-                  <p className="font-black text-slate-900 leading-tight">Sync Complete</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Local Database Secure</p>
-                </div>
-             </motion.div>
-
-             <motion.div 
-               animate={{ y: [0, 15, 0] }}
-               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-               className="absolute bottom-1/4 -right-12 glass-container p-6 rounded-[2rem] hidden xl:flex items-center gap-5 border-blue-600/10 shadow-2xl shadow-blue-500/10"
-             >
-                <div className="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600">
-                  <Flame size={28} strokeWidth={3} />
-                </div>
-                <div>
-                  <p className="font-black text-slate-900 leading-tight">12 Day Streak</p>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Consistency is Key</p>
-                </div>
-             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Section */}
-      <section className="py-24 bg-slate-900 overflow-hidden relative">
-        <div className="absolute inset-0 bg-blue-600/5 opacity-50" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-16">
-          <p className="text-sm font-black text-blue-500/60 uppercase tracking-[0.4em]">Engineered for Absolute Sovereignty</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-32 opacity-40 hover:opacity-100 transition-all duration-1000 grayscale hover:grayscale-0">
-             <div className="flex items-center gap-4 font-black text-3xl text-white tracking-tighter"><Database size={32} className="text-blue-500" /> SQLite</div>
-             <div className="flex items-center gap-4 font-black text-3xl text-white tracking-tighter"><Lock size={32} className="text-blue-500" /> AES-256</div>
-             <div className="flex items-center gap-4 font-black text-3xl text-white tracking-tighter"><Brain size={32} className="text-blue-500" /> Neural Engine</div>
-             <div className="flex items-center gap-4 font-black text-3xl text-white tracking-tighter"><HardDrive size={32} className="text-blue-500" /> Local-Only</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Macbook Presentation */}
-      <section className="py-40 px-6">
-        <div className="max-w-7xl mx-auto space-y-24">
-           <div className="text-center max-w-3xl mx-auto space-y-6">
-              <h2 className="text-6xl font-black text-slate-900 tracking-tight leading-tight">A Desktop Experience <br /><span className="text-blue-600 text-gradient">Unlike any other.</span></h2>
-              <p className="text-xl text-slate-600 leading-relaxed font-medium">Native performance meets unmatched UI design. StudyFlow desktop app provides the horsepower needed for intense research sessions.</p>
-           </div>
-           <MacbookMockup />
-        </div>
-      </section>
-
-      {/* Professional Feature Section 1 */}
-      <section id="features" className="py-40 px-6 bg-white/50 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-32 items-center">
-          <div className="space-y-12">
-            <div className="w-16 h-1 bg-blue-600 rounded-full" />
-            <h2 className="text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              Automated <br /> 
-              <span className="text-blue-600">Daily Execution.</span>
+      {/* Features with splash shapes */}
+      <section id="features" className="px-6 py-28 lg:py-36">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal className="max-w-3xl">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">Everything in one place</span>
+            <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 tracking-tight leading-[0.95] mt-5">
+              Built for the way <br />
+              you <span className="text-blue-600">actually study.</span>
             </h2>
-            <p className="text-xl text-slate-600 leading-relaxed font-medium">
-              StudyFlow intelligently scans your weekly templates to generate a precise daily agenda. Stop planning your day and start executing your goals.
+            <p className="text-xl text-slate-500 leading-relaxed mt-6">
+              Far more than a to-do list — a complete, offline student workstation that keeps homework, revision and exams moving without the busywork.
             </p>
-            <div className="grid gap-8">
-              {[
-                { icon: <Zap />, t: "Instant Generation", d: "Your day is ready at 12:00 AM automatically." },
-                { icon: <Focus />, t: "Frictionless Workflow", d: "Single-click task completion with XP rewards." },
-                { icon: <Layout />, t: "Dynamic View", d: "Real-time updates as you complete your study blocks." }
-              ].map((f, i) => (
-                <div key={i} className="flex gap-6 items-start group">
-                  <div className="w-14 h-14 bg-white rounded-[1.25rem] shadow-xl shadow-slate-200/50 border border-slate-100 flex items-center justify-center text-blue-600 flex-shrink-0 group-hover:scale-110 transition-transform">
-                    {f.icon}
+          </ScrollReveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+            {features.map((f, i) => (
+              <ScrollReveal key={f.title} delay={(i % 3) * 0.08}>
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                  className="relative h-full overflow-hidden bg-white rounded-[1.9rem] p-8 border border-black/[0.06] shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]"
+                >
+                  {/* splash shape */}
+                  <div
+                    className={`absolute -top-10 -right-8 w-44 h-44 ${f.blob} opacity-70`}
+                    style={{ borderRadius: blobRadii[i % blobRadii.length] }}
+                  />
+                  <div className="relative">
+                    <div className={`w-16 h-16 ${f.chip} rounded-[1.3rem] flex items-center justify-center text-white mb-7 shadow-[0_14px_30px_-10px_rgba(15,23,42,0.5)]`}>
+                      {f.icon}
+                    </div>
+                    <h3 className="font-display text-2xl font-semibold text-slate-900 tracking-tight mb-2">{f.title}</h3>
+                    <p className="text-slate-500 leading-relaxed">{f.desc}</p>
                   </div>
+                </motion.div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Laptop mockup + text */}
+      <section id="desktop" className="px-6 py-20 lg:py-28 scroll-mt-24">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <ScrollReveal direction="right">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">On the desktop</span>
+            <h2 className="font-display text-5xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[0.95] mt-5 mb-8">
+              A workstation that <span className="text-blue-600">keeps up.</span>
+            </h2>
+            <div className="space-y-7">
+              {laptopPoints.map((p) => (
+                <div key={p.t} className="flex gap-4">
+                  <span className="mt-1 w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0 shadow-[0_8px_20px_-6px_rgba(37,99,235,0.7)]">
+                    <Check size={16} strokeWidth={3} />
+                  </span>
                   <div>
-                    <h4 className="font-black text-slate-900 text-xl tracking-tight mb-1">{f.t}</h4>
-                    <p className="text-slate-500 font-medium">{f.d}</p>
+                    <h3 className="font-display text-xl font-semibold text-slate-900 mb-1">{p.t}</h3>
+                    <p className="text-slate-500 leading-relaxed">{p.d}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="relative">
-             <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full scale-150" />
-             <PhoneMockup screen="tasks" />
-          </div>
+            <Link
+              href="/download"
+              className="group inline-flex items-center gap-3 mt-10 bg-slate-900 text-white pl-8 pr-5 py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-colors"
+            >
+              Get the desktop app
+              <span className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center group-hover:rotate-45 transition-transform">
+                <ArrowUpRight size={16} />
+              </span>
+            </Link>
+          </ScrollReveal>
+
+          <ScrollReveal direction="left" className="relative">
+            <div className="absolute -inset-6 bg-blue-300/30 rounded-[3rem] -z-10" style={{ borderRadius: blobRadii[2] }} />
+            <MacbookMockup />
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Feature Section 2: Visual Workload */}
-      <section className="py-40 px-6 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-32 items-center">
-          <div className="relative order-2 md:order-1">
-             <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full scale-150" />
-             <PhoneMockup screen="calendar" />
-          </div>
-          <div className="space-y-12 order-1 md:order-2">
-            <div className="w-16 h-1 bg-blue-600 rounded-full" />
-            <h2 className="text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              Visualized <br /> 
-              <span className="text-blue-600">Study Intensity.</span>
-            </h2>
-            <p className="text-xl text-slate-600 leading-relaxed font-medium">
-              Understand your semester at a glance. Our heatmap visualization shows upcoming exam clusters and syllabus deadlines before they become emergencies.
-            </p>
-            <div className="grid grid-cols-2 gap-10 pt-4">
-               <div className="space-y-2">
-                  <h4 className="text-5xl font-black text-slate-900 tracking-tighter">0.0%</h4>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Cloud Data Leaks</p>
-               </div>
-               <div className="space-y-2">
-                  <h4 className="text-5xl font-black text-blue-600 tracking-tighter">100%</h4>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Offline Availability</p>
-               </div>
-            </div>
-            <div className="pt-8">
-               <Link href="/docs" className="inline-flex items-center gap-3 font-black text-blue-600 hover:text-blue-700 transition-all group text-lg">
-                  Explore Research Capabilities
-                  <ChevronRight size={22} className="group-hover:translate-x-2 transition-transform" />
-               </Link>
+      {/* Cool shape with text inside */}
+      <section id="privacy" className="px-6 py-20 lg:py-28 scroll-mt-24">
+        <ScrollReveal className="max-w-6xl mx-auto">
+          <div
+            className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 text-white px-8 py-24 md:px-20 md:py-32 text-center"
+            style={{ borderRadius: "44% 56% 70% 30% / 38% 38% 62% 62%" }}
+          >
+            {/* floating splash accents */}
+            <div className="absolute top-10 left-12 w-24 h-24 bg-white/10 rounded-[40%_60%_55%_45%/55%_45%_60%_40%]" />
+            <div className="absolute bottom-12 right-16 w-32 h-32 bg-white/10 rounded-[60%_40%_45%_55%/45%_55%_50%_50%]" />
+            <div className="relative z-10 max-w-2xl mx-auto space-y-7">
+              <span className="inline-flex items-center gap-2 text-blue-100 text-[11px] font-bold uppercase tracking-[0.3em]">
+                <Shield size={14} /> Local-first by design
+              </span>
+              <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[0.98]">
+                Your data never <br /> leaves your device.
+              </h2>
+              <p className="text-lg md:text-xl text-blue-50/90 leading-relaxed">
+                No accounts, no servers, no sync you didn&apos;t ask for. Study Flow stores everything in a local, encrypted SQLite database — so your notes, grades and schedule stay yours alone.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3 pt-2">
+                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><WifiOff size={15} /> Works offline</span>
+                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><Database size={15} /> SQLite + Prisma</span>
+                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><Lock size={15} /> Encrypted</span>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* Final Premium CTA */}
-      <section className="py-40 px-6">
-        <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          className="max-w-7xl mx-auto relative rounded-[4rem] bg-slate-900 p-24 text-center text-white overflow-hidden shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)]"
-        >
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full -mr-64 -mt-64" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-400/10 blur-[120px] rounded-full -ml-64 -mb-64" />
-          
-          <div className="relative z-10 space-y-12">
-            <h2 className="text-7xl md:text-8xl font-black tracking-tight leading-[0.9] text-white">Your future is <br /><span className="text-blue-500 italic">local-first.</span></h2>
-            <p className="text-2xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
-              Stop compromising your data for productivity. Join the elite scholars mastering their workflow on StudyFlow.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-8 pt-8">
-               <Link href="/download" className="bg-blue-600 text-white px-16 py-6 rounded-full text-2xl font-black hover:bg-blue-500 transition-all transform hover:scale-105 shadow-2xl shadow-blue-600/40">
-                 Secure Access Now
-               </Link>
-               <Link href="/docs" className="bg-white/5 backdrop-blur-xl border border-white/10 text-white px-16 py-6 rounded-full text-2xl font-black hover:bg-white/10 transition-all transform hover:scale-105">
-                 View API Specs
-               </Link>
-            </div>
+      {/* Closing CTA */}
+      <section className="px-6 pb-32 pt-10 text-center">
+        <ScrollReveal className="max-w-3xl mx-auto">
+          <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 tracking-tight leading-[0.95]">
+            Ready for a <span className="text-blue-600">calmer</span> semester?
+          </h2>
+          <p className="text-xl text-slate-500 leading-relaxed mt-6 max-w-xl mx-auto">
+            Private, offline, and free. Download Study Flow and turn your timetable into a daily rhythm.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <Link
+              href="/download"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-12 py-5 text-lg font-semibold text-white shadow-[0_24px_50px_-16px_rgba(0,0,0,0.6)] transition-transform hover:scale-[1.02] active:scale-95"
+            >
+              <span className="relative z-10">Get started</span>
+              <span className="absolute right-0 bottom-0 w-0 h-0 border-l-[34px] border-l-transparent border-b-[34px] border-b-blue-600" />
+            </Link>
+            <Link
+              href="/docs"
+              className="inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-slate-900 px-10 py-5 rounded-2xl text-lg font-semibold hover:bg-slate-50 transition-colors"
+            >
+              <BookOpen size={20} />
+              Read the docs
+            </Link>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </section>
     </div>
   );

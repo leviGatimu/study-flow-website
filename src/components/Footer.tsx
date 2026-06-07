@@ -1,61 +1,114 @@
 import Link from "next/link";
-import { Github, MessageSquare, Send, Globe } from "lucide-react";
+import { ArrowUpRight, Github, MessageSquare, Send } from "lucide-react";
+import SandText from "@/components/SandText";
+import Logo from "@/components/Logo";
+
+// Stable reference so SandText doesn't re-init each render.
+const INK_GRAINS = ["#000000", "#070707", "#0d0d0d", "#050505", "#111111", "#030303"];
+
+const columns = [
+  {
+    title: "Product",
+    links: [
+      { label: "Features", href: "/#features" },
+      { label: "Download", href: "/download" },
+      { label: "Documentation", href: "/docs" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Support", href: "/support" },
+      { label: "Privacy", href: "/privacy" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { label: "Discord", href: "https://discord.gg/RQQfJAUCy", external: true },
+      { label: "GitHub", href: "https://github.com/leviGatimu/Study-Flow", external: true },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-24 px-6">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-12 text-left">
-        <div className="col-span-2 space-y-8">
-          <Link href="/" className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-base">S</div>
-            StudyFlow
-          </Link>
-          <p className="text-lg leading-relaxed max-w-sm text-slate-400">
-            The world's most private academic workstation. Built for high-performers who value digital sovereignty.
-          </p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-blue-400 transition-colors"><Github size={20} /></a>
-            <a href="#" className="hover:text-blue-400 transition-colors"><Send size={20} /></a>
-            <a href="#" className="hover:text-blue-400 transition-colors"><MessageSquare size={20} /></a>
+    <footer className="relative bg-[#ececec] text-slate-600 overflow-hidden border-t border-black/10">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28">
+        <div className="grid md:grid-cols-12 gap-12 pb-24 border-b border-black/10">
+          {/* brand + CTA */}
+          <div className="md:col-span-5 space-y-8">
+            <Logo size={40} textClassName="font-display text-2xl font-semibold tracking-tight text-slate-900" />
+            <p className="text-lg leading-relaxed max-w-sm text-slate-500">
+              A private, local-first study workstation. Turn your timetable into a daily rhythm — no cloud, no login, no noise.
+            </p>
+            <Link
+              href="/download"
+              className="group inline-flex items-center gap-3 bg-slate-900 text-white pl-7 pr-5 py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-colors shadow-[0_18px_40px_-14px_rgba(15,23,42,0.6)]"
+            >
+              Download free
+              <span className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center group-hover:rotate-45 transition-transform">
+                <ArrowUpRight size={16} />
+              </span>
+            </Link>
+            <div className="flex gap-5 pt-2">
+              <a href="https://github.com/leviGatimu/Study-Flow" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+                <Github size={18} />
+              </a>
+              <a href="https://discord.gg/RQQfJAUCy" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+                <MessageSquare size={18} />
+              </a>
+              <a href="#" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+                <Send size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* link columns */}
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <h3 className="text-blue-600 font-semibold mb-6 text-xs uppercase tracking-[0.25em]">{col.title}</h3>
+                <ul className="space-y-4 text-[15px]">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 group"
+                      >
+                        {link.label}
+                        {"external" in link && link.external && (
+                          <ArrowUpRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-        
-        <div>
-          <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Product</h3>
-          <ul className="space-y-4 text-sm">
-            <li><Link href="/#features" className="hover:text-blue-400 transition-colors">Features</Link></li>
-            <li><Link href="/download" className="hover:text-blue-400 transition-colors">Download</Link></li>
-            <li><Link href="/docs" className="hover:text-blue-400 transition-colors">Documentation</Link></li>
-          </ul>
-        </div>
 
-        <div>
-          <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Company</h3>
-          <ul className="space-y-4 text-sm">
-            <li><Link href="/about" className="hover:text-blue-400 transition-colors">About Us</Link></li>
-            <li><Link href="/support" className="hover:text-blue-400 transition-colors">Support</Link></li>
-            <li><Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-widest">Community</h3>
-          <ul className="space-y-4 text-sm">
-            <li><a href="https://discord.gg/RQQfJAUCy" className="hover:text-blue-400 transition-colors">Discord</a></li>
-            <li><a href="https://github.com/leviGatimu/Study-Flow" className="hover:text-blue-400 transition-colors">GitHub</a></li>
-          </ul>
+        {/* bottom meta */}
+        <div className="py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+          <p>© 2026 Study Flow — built by scholars, for scholars.</p>
+          <div className="flex gap-8">
+            <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms</Link>
+            <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy</Link>
+            <span>English (US)</span>
+          </div>
         </div>
       </div>
-      
-      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate-800 text-xs flex flex-col md:flex-row justify-between items-center gap-6">
-         <p className="text-slate-500">© 2026 StudyFlow. Local-first, academic workstation. Built by scholars.</p>
-         <div className="flex gap-8 text-slate-500">
-           <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-           <div className="flex items-center gap-2">
-             <Globe size={14} />
-             <span>English (US)</span>
-           </div>
-         </div>
+
+      {/* Giant interactive wordmark — black grains on white */}
+      <div className="relative w-full select-none">
+        <div className="h-[34vw] min-h-[260px] max-h-[520px] w-full">
+          <SandText lines={["STUDY", "FLOW"]} colors={INK_GRAINS} className="w-full h-full cursor-none touch-none" />
+        </div>
+        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-slate-400 pointer-events-none">
+          Drag your cursor through the grains
+        </p>
       </div>
     </footer>
   );

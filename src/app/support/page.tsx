@@ -35,10 +35,10 @@ export default function Support() {
   ];
 
   const faqs = [
-    { q: "Is StudyFlow really free?", a: "Yes, the core version of StudyFlow is open-source and free to use forever." },
-    { q: "Where is my data stored?", a: "StudyFlow is local-first. Your data is stored on your machine in an encrypted SQLite database." },
+    { q: "Is Study Flow really free?", a: "Yes, the core version of Study Flow is open-source and free to use forever." },
+    { q: "Where is my data stored?", a: "Study Flow is local-first. Your data is stored on your machine in an encrypted SQLite database." },
     { q: "Does it work on Mac or Linux?", a: "Currently, we only support Windows 10/11. Mac and Linux versions are in our long-term roadmap." },
-    { q: "How do I update the software?", a: "StudyFlow will notify you when an update is available. You can also download the latest installer from our home page." }
+    { q: "How do I update the software?", a: "Study Flow will notify you when an update is available. You can also download the latest installer from our home page." }
   ];
 
   return (
@@ -107,7 +107,7 @@ export default function Support() {
           <section className="mt-40 space-y-16">
              <div className="text-center space-y-4">
                 <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">Frequently Asked Questions</h2>
-                <p className="text-gray-600 text-lg">Everything you need to know about StudyFlow.</p>
+                <p className="text-gray-600 text-lg">Everything you need to know about Study Flow.</p>
              </div>
              
              <div className="max-w-4xl mx-auto grid gap-8">
@@ -143,7 +143,7 @@ export default function Support() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Join the conversation.</h2>
                 <p className="text-gray-400 text-xl leading-relaxed">
-                  Connect with thousands of other StudyFlow users, share your workflows, and get help from the community experts.
+                  Connect with thousands of other Study Flow users, share your workflows, and get help from the community experts.
                 </p>
              </div>
              <a href="https://discord.gg/RQQfJAUCy" target="_blank" rel="noopener noreferrer" className="bg-blue-600 text-white font-bold py-5 px-12 rounded-full hover:bg-blue-700 transition-all transform hover:scale-105 shadow-2xl flex items-center gap-3 whitespace-nowrap text-lg relative z-10">

@@ -1,264 +1,559 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Terminal, Download, HardDrive, Brain, Shield, Keyboard, HelpCircle, ChevronRight, Menu, X, Book, Database, Lock, Code, Cpu, Layers, Zap, Clock, Trophy } from "lucide-react";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  Activity,
+  Book,
+  BookOpen,
+  Brain,
+  BrainCircuit,
+  Calculator,
+  CalendarDays,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  Cpu,
+  Database,
+  Download,
+  FileText,
+  Flame,
+  FolderOpen,
+  GraduationCap,
+  KeyRound,
+  Layers,
+  LayoutGrid,
+  Library,
+  Lock,
+  Sparkles,
+  StickyNote,
+  Target,
+  TrendingUp,
+  Trophy,
+  WifiOff,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState, type ReactNode } from "react";
+
+/* ------------------------------------------------------------------ */
+/*  Small building blocks                                             */
+/* ------------------------------------------------------------------ */
+
+const blobRadii = [
+  "42% 58% 63% 37% / 41% 44% 56% 59%",
+  "63% 37% 47% 53% / 38% 63% 37% 62%",
+  "39% 61% 38% 62% / 58% 39% 61% 42%",
+  "58% 42% 64% 36% / 49% 56% 44% 51%",
+];
+
+const chipColors: Record<string, string> = {
+  blue: "bg-blue-600",
+  emerald: "bg-emerald-500",
+  amber: "bg-amber-500",
+  indigo: "bg-indigo-500",
+  sky: "bg-sky-500",
+  rose: "bg-rose-500",
+  dark: "bg-slate-900",
+  violet: "bg-violet-500",
+};
+const blobColors: Record<string, string> = {
+  blue: "bg-blue-200",
+  emerald: "bg-emerald-200",
+  amber: "bg-amber-200",
+  indigo: "bg-indigo-200",
+  sky: "bg-sky-200",
+  rose: "bg-rose-200",
+  dark: "bg-slate-200",
+  violet: "bg-violet-200",
+};
+
+function Feature({
+  icon,
+  color = "blue",
+  title,
+  children,
+  i = 0,
+}: {
+  icon: ReactNode;
+  color?: keyof typeof chipColors;
+  title: string;
+  children: ReactNode;
+  i?: number;
+}) {
+  return (
+    <div className="relative h-full overflow-hidden bg-white rounded-[1.5rem] p-7 border border-black/[0.06] shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)]">
+      <div
+        className={`absolute -top-8 -right-6 w-32 h-32 ${blobColors[color]} opacity-60`}
+        style={{ borderRadius: blobRadii[i % blobRadii.length] }}
+      />
+      <div className="relative">
+        <div className={`w-12 h-12 ${chipColors[color]} rounded-2xl flex items-center justify-center text-white mb-5 shadow-[0_12px_26px_-12px_rgba(15,23,42,0.6)]`}>
+          {icon}
+        </div>
+        <h4 className="font-display text-xl font-semibold text-slate-900 tracking-tight mb-1.5">{title}</h4>
+        <p className="text-slate-500 leading-relaxed text-[15px]">{children}</p>
+      </div>
+    </div>
+  );
+}
+
+function Step({ n, title, children }: { n: string; title: string; children: ReactNode }) {
+  return (
+    <div className="flex gap-5">
+      <span className="font-display text-2xl font-semibold text-white bg-slate-900 w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0">
+        {n}
+      </span>
+      <div className="pt-1">
+        <h4 className="font-display text-lg font-semibold text-slate-900 mb-1">{title}</h4>
+        <p className="text-slate-500 leading-relaxed">{children}</p>
+      </div>
+    </div>
+  );
+}
+
+function Callout({ icon, title, children }: { icon: ReactNode; title: string; children: ReactNode }) {
+  return (
+    <div className="flex gap-4 bg-blue-600/[0.06] border border-blue-600/15 rounded-[1.5rem] p-6">
+      <span className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0">{icon}</span>
+      <div>
+        <p className="font-display font-semibold text-slate-900 mb-1">{title}</p>
+        <p className="text-slate-600 leading-relaxed text-[15px]">{children}</p>
+      </div>
+    </div>
+  );
+}
+
+function Kbd({ children }: { children: ReactNode }) {
+  return (
+    <kbd className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white border border-black/10 shadow-sm text-sm font-semibold text-slate-700">
+      {children}
+    </kbd>
+  );
+}
+
+function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) {
+  return (
+    <section id={id} className="scroll-mt-28 pt-4">
+      <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">{eyebrow}</span>
+      <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.0] mt-4 mb-7">{title}</h2>
+      <div className="space-y-6">{children}</div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+
+const NAV = [
+  { id: "overview", label: "Overview" },
+  { id: "install", label: "Install & setup" },
+  { id: "dashboard", label: "The dashboard" },
+  { id: "timetable", label: "Timetable engine" },
+  { id: "calendar", label: "Calendar & history" },
+  { id: "academics", label: "Subjects, marks & goals" },
+  { id: "ai", label: "AI tools" },
+  { id: "focus", label: "Focus & gamification" },
+  { id: "tools", label: "More tools" },
+  { id: "shortcuts", label: "Shortcuts" },
+  { id: "privacy", label: "Privacy & data" },
+  { id: "faq", label: "FAQ" },
+];
 
 export default function Docs() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("architecture");
+  const [active, setActive] = useState("overview");
 
-  const sections = [
-    { id: "architecture", title: "System Architecture", icon: Layers },
-    { id: "installation", title: "Installation Guide", icon: Download },
-    { id: "dashboard", title: "Command Center", icon: Zap },
-    { id: "workload", title: "Workload Visualizer", icon: Clock },
-    { id: "ai-engine", title: "Neural Engine (AI)", icon: Brain },
-    { id: "security", title: "Sovereignty & Security", icon: Lock },
-    { id: "database", title: "Local Schema", icon: Database },
-    { id: "shortcuts", title: "Power-User Shortcuts", icon: Keyboard },
-  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+    NAV.forEach((n) => {
+      const el = document.getElementById(n.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="relative min-h-screen">
-      <div className="bg-mesh" />
+      <div className="grain" />
 
-      <div className="relative z-10 pt-32 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 px-6">
-        
-        {/* Sidebar Toggle for Mobile */}
-        <button 
-          className="md:hidden fixed bottom-10 right-10 z-[110] w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-2xl"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-          {isSidebarOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+      {/* Header */}
+      <section className="px-6 pt-36 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.21, 0.5, 0.3, 1] }}
+            className="max-w-3xl"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+              <BookOpen size={13} /> Documentation
+            </span>
+            <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
+              How Study <br /> Flow <span className="text-blue-600">works.</span>
+            </h1>
+            <p className="text-xl text-slate-500 leading-relaxed mt-6">
+              Everything you need to turn a weekly timetable into a daily rhythm — from the recurring task engine to the built-in AI study tools. Private, offline, and entirely yours.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
+      {/* Body: sticky TOC + content */}
+      <div className="max-w-7xl mx-auto px-6 pb-32 grid lg:grid-cols-[260px_1fr] gap-12 lg:gap-16">
         {/* Sidebar */}
-        <aside className={`${isSidebarOpen ? 'fixed inset-0 bg-white z-[100] p-12 overflow-y-auto' : 'hidden'} md:block w-full md:w-80 space-y-12`}>
-          <div className="relative group">
-            <input 
-              type="text" 
-              placeholder="Search specifications..." 
-              className="w-full bg-white/50 backdrop-blur-md border border-slate-200 rounded-[1.5rem] py-5 pl-14 pr-4 text-sm focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition-all font-medium"
-            />
-            <Search className="absolute left-5 top-5 text-slate-400" size={20} />
-          </div>
-          
-          <nav className="space-y-1.5">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 px-5">Technical Docs</p>
-            {sections.map((s) => (
-              <a 
-                key={s.id}
-                href={`#${s.id}`} 
-                onClick={() => {
-                  setActiveSection(s.id);
-                  setIsSidebarOpen(false);
-                }}
-                className={`flex items-center gap-5 px-5 py-4 rounded-2xl font-black text-sm transition-all group ${activeSection === s.id ? 'bg-slate-900 text-white shadow-2xl shadow-slate-900/20' : 'text-slate-600 hover:bg-white hover:text-blue-600'}`}
+        <aside className="hidden lg:block">
+          <div className="sticky top-28 space-y-1">
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 px-4 mb-3">On this page</p>
+            {NAV.map((n) => (
+              <a
+                key={n.id}
+                href={`#${n.id}`}
+                className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
+                  active === n.id ? "bg-slate-900 text-white" : "text-slate-500 hover:text-slate-900 hover:bg-black/[0.04]"
+                }`}
               >
-                <s.icon size={20} className={activeSection === s.id ? 'text-blue-500' : 'text-slate-400 group-hover:text-blue-600'} />
-                {s.title}
+                {n.label}
               </a>
             ))}
-          </nav>
-
-          <div className="p-10 glass-container rounded-[3rem] bg-blue-600 text-white border-0 relative overflow-hidden group">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-2xl rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
-             <h4 className="font-black text-lg mb-2 relative z-10">Elite Support</h4>
-             <p className="text-xs text-blue-100 mb-8 leading-relaxed relative z-10 font-medium">Access our priority engineering channel for deep technical assistance.</p>
-             <a href="https://discord.gg/RQQfJAUCy" className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 transition-colors relative z-10">
-                Join Discord <ChevronRight size={14} />
-             </a>
+            <div className="pt-6 px-4">
+              <Link
+                href="/download"
+                className="group inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-3 rounded-xl text-sm font-semibold hover:bg-blue-500 transition-colors w-full justify-center"
+              >
+                <Download size={16} /> Download the app
+              </Link>
+            </div>
           </div>
         </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 pb-40">
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={activeSection}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -30, opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="space-y-32"
-            >
-              {/* Architecture Section */}
-              <div id="architecture" className="space-y-12 scroll-mt-40">
-                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest border border-blue-200">
-                  <Layers size={14} /> Core Foundation
+        {/* Content */}
+        <main className="min-w-0 space-y-24">
+          {/* Overview */}
+          <Section id="overview" eyebrow="Overview" title="A complete student workstation.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Study Flow is a local-first desktop and web app for students. It turns a recurring weekly timetable
+              into automatically-generated daily tasks, then layers a full academic workspace on top — exams, grades,
+              homework, focus sessions, projects, and a private AI study assistant. There is no cloud and no account on
+              a server: everything lives on your machine.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="blue" icon={<Zap size={20} />} title="Automatic daily tasks">
+                Define your timetable once; the app generates each day&apos;s homework and revision for you.
+              </Feature>
+              <Feature i={1} color="indigo" icon={<Brain size={20} />} title="Built-in AI tutor">
+                Turn a PDF into quizzes, flashcards and graded feedback using your own API key.
+              </Feature>
+              <Feature i={2} color="emerald" icon={<TrendingUp size={20} />} title="Grades & insights">
+                Track report cards, set target grades, and see where your time actually goes.
+              </Feature>
+              <Feature i={3} color="amber" icon={<Flame size={20} />} title="Streaks & XP">
+                Earn experience, level up, and keep a daily streak that rewards consistency.
+              </Feature>
+              <Feature i={0} color="violet" icon={<Zap size={20} />} title="Focus mode">
+                Distraction-free study sessions with a timer that logs your focused minutes.
+              </Feature>
+              <Feature i={1} color="dark" icon={<Lock size={20} />} title="Local & private">
+                A local SQLite database. No login to our servers, no tracking, works fully offline.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* Install */}
+          <Section id="install" eyebrow="Get started" title="Install & first run.">
+            <div className="space-y-7">
+              <Step n="1" title="Download & install">
+                Grab the installer from the{" "}
+                <Link href="/download" className="text-blue-600 font-semibold hover:underline">
+                  download page
+                </Link>{" "}
+                and run it. Study Flow ships as a desktop app (and an installable PWA), so it lives in your dock like
+                any native program.
+              </Step>
+              <Step n="2" title="Create your local account">
+                On first launch you set a username and password. This unlocks the local database on your device — it is
+                never sent anywhere. Your name powers the personalised greeting on the dashboard.
+              </Step>
+              <Step n="3" title="Add your subjects & timetable">
+                Add your subjects, then build your recurring weekly schedule under <strong>Timetable</strong>. Each entry
+                becomes a template the engine uses to generate daily tasks (see below).
+              </Step>
+              <Step n="4" title="Connect AI (optional)">
+                To use the AI Tutor, AI Buddy and AI Notes, paste a free Google Gemini or OpenAI key in{" "}
+                <strong>Settings</strong>. Everything else works without it.
+              </Step>
+            </div>
+            <Callout icon={<WifiOff size={18} />} title="Works fully offline">
+              After install, Study Flow needs no internet connection for its core features — your schedule, tasks,
+              grades and notes are all stored and computed locally.
+            </Callout>
+          </Section>
+
+          {/* Dashboard */}
+          <Section id="dashboard" eyebrow="Daily use" title="The dashboard.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              The dashboard is your command center and the default landing screen. It opens to a personalised greeting,
+              the current date and time, and a daily verse for a little motivation.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <Feature i={0} color="blue" icon={<Clock size={20} />} title="Today, in order">
+                A time-ordered timeline of everything due today. Homework shows a solid border; revision shows a dashed
+                accent border — so you know your mode at a glance.
+              </Feature>
+              <Feature i={1} color="emerald" icon={<CheckCircle2 size={20} />} title="One-tap complete">
+                Tick a task to mark it done. Completing work feeds your streak and XP, and moves it into History.
+              </Feature>
+              <Feature i={2} color="indigo" icon={<Activity size={20} />} title="Daily progress">
+                A progress widget shows completed vs. pending for the day, plus a &ldquo;tomorrow at a glance&rdquo; peek
+                so nothing sneaks up on you.
+              </Feature>
+              <Feature i={3} color="amber" icon={<Zap size={20} />} title="Live focus">
+                If a study block is active right now, a live banner surfaces it so you can jump straight into focus mode.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* Timetable engine */}
+          <Section id="timetable" eyebrow="The engine" title="Recurring timetable, automated.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Study Flow behaves like a recurring timetable engine, not a static to-do list. You define{" "}
+              <strong>schedule templates</strong> once and the app generates dated task instances automatically.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <Feature i={0} color="blue" icon={<LayoutGrid size={20} />} title="Templates">
+                Each template holds a day of week, subject, start &amp; end time, deadline day, and a type —{" "}
+                <strong>HOMEWORK</strong> or <strong>REVISION</strong>.
+              </Feature>
+              <Feature i={1} color="violet" icon={<Zap size={20} />} title="Auto-generation">
+                When the dashboard loads it checks today&apos;s weekday, finds matching templates, and creates that
+                day&apos;s tasks if they don&apos;t already exist — no duplicates.
+              </Feature>
+              <Feature i={2} color="emerald" icon={<Layers size={20} />} title="Edit without code">
+                Manage your whole semester from the <strong>Manage</strong> and <strong>Timetable</strong> pages — add,
+                edit or delete templates as your classes change.
+              </Feature>
+              <Feature i={3} color="amber" icon={<CheckCircle2 size={20} />} title="One-off tasks">
+                Need a single extra task? Add a one-off that lives alongside generated ones and won&apos;t regenerate if
+                you remove it.
+              </Feature>
+            </div>
+            <Callout icon={<Sparkles size={18} />} title="Homework vs revision">
+              The two task types are colour-coded everywhere — dashboard, calendar, history and management — so your eye
+              instantly separates &ldquo;work to hand in&rdquo; from &ldquo;study to review.&rdquo;
+            </Callout>
+          </Section>
+
+          {/* Calendar & history */}
+          <Section id="calendar" eyebrow="Look back & ahead" title="Calendar & history.">
+            <div className="grid sm:grid-cols-2 gap-5">
+              <Feature i={0} color="blue" icon={<CalendarDays size={20} />} title="Month calendar">
+                A full month grid with colour-coded dots for days that contain homework or revision. Click any day to
+                open its tasks, times and deadlines.
+              </Feature>
+              <Feature i={1} color="emerald" icon={<CheckCircle2 size={20} />} title="History log">
+                Every completed task, filterable by last 7 days, last 30 days, or all time — a satisfying record of the
+                work you&apos;ve put in.
+              </Feature>
+              <Feature i={2} color="indigo" icon={<FileText size={20} />} title="Proof of work">
+                Attach a short description or a PDF as proof when you complete a task, so your history doubles as a
+                portfolio.
+              </Feature>
+              <Feature i={3} color="amber" icon={<Target size={20} />} title="Marked days">
+                Mark important days so they stand out on the calendar at a glance.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* Academics */}
+          <Section id="academics" eyebrow="Academics" title="Subjects, marks & goals.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Keep the academic side of school in one place — your subjects, your results, and the targets you&apos;re
+              chasing this term.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="blue" icon={<Library size={20} />} title="Subjects">
+                Maintain your subject list; it powers grouping across resources, notes, goals and the tutor.
+              </Feature>
+              <Feature i={1} color="emerald" icon={<TrendingUp size={20} />} title="Marks & report cards">
+                Record report cards per term with subject grades, an overall average, and AI feedback that flags where
+                to focus.
+              </Feature>
+              <Feature i={2} color="rose" icon={<Target size={20} />} title="Goals">
+                Set a target grade for each subject and track how your real marks compare.
+              </Feature>
+              <Feature i={3} color="indigo" icon={<Activity size={20} />} title="Insights">
+                Visual analytics of your study activity, completion rates and momentum over time.
+              </Feature>
+              <Feature i={0} color="sky" icon={<FileText size={20} />} title="Weekly summaries">
+                Auto-generated weekly reports with a grade, total focused minutes and a per-subject breakdown.
+              </Feature>
+              <Feature i={1} color="amber" icon={<GraduationCap size={20} />} title="Exams">
+                A countdown to every upcoming exam, with priority levels so the big ones stay front and centre.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* AI tools */}
+          <Section id="ai" eyebrow="Intelligence" title="AI study tools.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Study Flow includes a private AI layer. It runs on <strong>your own</strong> Google Gemini or OpenAI
+              key — your notes and questions go directly from your machine to the provider you chose, with nothing
+              stored on our side.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="indigo" icon={<Brain size={20} />} title="AI Tutor">
+                Upload a PDF and get auto-generated questions, flashcards and exercises. Take graded quizzes, receive
+                per-answer feedback, and track your understanding from Beginner to Master with spaced review.
+              </Feature>
+              <Feature i={1} color="blue" icon={<BrainCircuit size={20} />} title="AI Buddy">
+                A conversational study assistant with saved chat sessions — ask questions, get explanations, and keep the
+                history per topic.
+              </Feature>
+              <Feature i={2} color="violet" icon={<Sparkles size={20} />} title="AI Notes">
+                Turn an uploaded document into clean Markdown notes using style presets like Detailed, Summary or Q&amp;A.
+              </Feature>
+            </div>
+            <Callout icon={<KeyRound size={18} />} title="Connecting a key">
+              Create a free key in Google AI Studio (Gemini) or OpenAI, open <strong>Settings</strong>, paste it in, and
+              choose your primary provider. You can switch providers any time — the rest of the app keeps working without
+              a key.
+            </Callout>
+          </Section>
+
+          {/* Focus & gamification */}
+          <Section id="focus" eyebrow="Momentum" title="Focus & gamification.">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="violet" icon={<Zap size={20} />} title="Focus mode">
+                A distraction-free session with a timer. Every session logs your focused minutes toward your totals.
+              </Feature>
+              <Feature i={1} color="amber" icon={<Flame size={20} />} title="Streaks">
+                Show up daily to grow your current streak; your longest streak is kept as a badge of honour.
+              </Feature>
+              <Feature i={2} color="blue" icon={<Trophy size={20} />} title="Ranks & XP">
+                Completing tasks and focusing earns XP and levels. The Ranks page shows your badge and a roadmap to the
+                next tier.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* More tools */}
+          <Section id="tools" eyebrow="The rest of the kit" title="More tools.">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="blue" icon={<BookOpen size={20} />} title="Homeworks">
+                A dedicated assignment tracker with due dates, planned dates, completion and proof attachments.
+              </Feature>
+              <Feature i={1} color="emerald" icon={<FolderOpen size={20} />} title="Projects">
+                Track longer projects with status, a progress bar and attached documents.
+              </Feature>
+              <Feature i={2} color="indigo" icon={<Layers size={20} />} title="Resources">
+                Save links and files per subject so your references are always one click away.
+              </Feature>
+              <Feature i={3} color="amber" icon={<StickyNote size={20} />} title="Sticky notes">
+                A draggable, colourful sticky-note board for quick thoughts and reminders.
+              </Feature>
+              <Feature i={0} color="sky" icon={<GraduationCap size={20} />} title="School timetable">
+                A view of your in-person school timetable, separate from your study blocks.
+              </Feature>
+              <Feature i={1} color="rose" icon={<Book size={20} />} title="Bible & daily verse">
+                A daily verse for focus and motivation, surfaced on the dashboard and its own page.
+              </Feature>
+              <Feature i={2} color="dark" icon={<Calculator size={20} />} title="Calculator">
+                A built-in calculator for quick maths without leaving the app.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* Shortcuts */}
+          <Section id="shortcuts" eyebrow="Power user" title="Shortcuts & command menu.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Move at speed with keyboard shortcuts and a command menu that jumps to any tool, homework, tutor module,
+              note or project.
+            </p>
+            <div className="bg-white rounded-[1.5rem] border border-black/[0.06] shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)] divide-y divide-black/5">
+              {[
+                { keys: ["Ctrl/⌘", "E"], label: "Open the command menu" },
+                { keys: ["Alt", "D"], label: "Go to the dashboard" },
+                { keys: ["Alt", "F"], label: "Open focus mode" },
+                { keys: ["Alt", "C"], label: "Open the calculator" },
+              ].map((s) => (
+                <div key={s.label} className="flex items-center justify-between px-6 py-4">
+                  <span className="text-slate-600 font-medium">{s.label}</span>
+                  <span className="flex items-center gap-1.5">
+                    {s.keys.map((k, idx) => (
+                      <span key={k} className="flex items-center gap-1.5">
+                        {idx > 0 && <span className="text-slate-300">+</span>}
+                        <Kbd>{k}</Kbd>
+                      </span>
+                    ))}
+                  </span>
                 </div>
-                <h1 className="text-7xl font-black text-slate-900 tracking-tighter leading-tight">System <br /> Architecture.</h1>
-                <p className="text-2xl text-slate-600 leading-relaxed max-w-3xl font-medium">
-                  StudyFlow is built on a "Local-First" paradigm. This means your workstation is a self-contained environment that requires no external server to function.
+              ))}
+            </div>
+          </Section>
+
+          {/* Privacy */}
+          <Section id="privacy" eyebrow="Your data" title="Privacy & how it's built.">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Study Flow is local-first by design. Your schedule, grades, notes and chats live in a single SQLite
+              database on your device — there is no account on our servers and nothing to leak.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <Feature i={0} color="dark" icon={<Database size={20} />} title="SQLite + Prisma">
+                A typed, local database via Prisma ORM. Your data is a file you control, easy to back up.
+              </Feature>
+              <Feature i={1} color="blue" icon={<WifiOff size={20} />} title="Offline-first">
+                Core features need no connection. Only your own AI calls leave the device, to the provider you chose.
+              </Feature>
+              <Feature i={2} color="indigo" icon={<Cpu size={20} />} title="Modern stack">
+                Built with Next.js (App Router), React, TypeScript, Tailwind CSS and shadcn/ui, packaged for desktop.
+              </Feature>
+            </div>
+          </Section>
+
+          {/* FAQ */}
+          <Section id="faq" eyebrow="Questions" title="FAQ.">
+            <div className="space-y-4">
+              {[
+                { q: "Is Study Flow free?", a: "Yes — the core app is free to download and use forever, and it's local-first so there are no subscriptions." },
+                { q: "Do I need an account or internet?", a: "You create a local account on your device to protect your data, but there's no server sign-up and the app works fully offline." },
+                { q: "Do I have to use the AI features?", a: "No. They're optional and only activate when you add your own Gemini or OpenAI key in Settings. Everything else works without one." },
+                { q: "Where is my data stored?", a: "In a local SQLite database on your machine. You can back it up by copying the database file." },
+                { q: "How do daily tasks appear?", a: "When the dashboard loads, the engine reads your weekly templates and generates that day's tasks automatically, avoiding duplicates." },
+              ].map((f) => (
+                <details key={f.q} className="group bg-white rounded-[1.25rem] border border-black/[0.06] shadow-[0_24px_50px_-40px_rgba(15,23,42,0.3)] p-6 open:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.3)]">
+                  <summary className="flex items-center justify-between cursor-pointer list-none font-display text-lg font-semibold text-slate-900">
+                    {f.q}
+                    <ChevronRight size={18} className="text-slate-400 transition-transform group-open:rotate-90" />
+                  </summary>
+                  <p className="text-slate-500 leading-relaxed mt-3 text-[15px]">{f.a}</p>
+                </details>
+              ))}
+            </div>
+
+            {/* closing CTA */}
+            <div className="mt-12 relative overflow-hidden rounded-[2rem] bg-slate-900 text-white p-10 md:p-14 text-center">
+              <div className="absolute -top-24 -right-16 w-80 h-80 bg-blue-600/30 blur-[120px] rounded-full" />
+              <div className="relative z-10 space-y-6">
+                <h3 className="font-display text-3xl md:text-4xl font-semibold tracking-tight">Ready to try it?</h3>
+                <p className="text-slate-300 max-w-md mx-auto leading-relaxed">
+                  Download Study Flow and turn your timetable into a calmer, more consistent semester.
                 </p>
-                <div className="grid md:grid-cols-2 gap-8 pt-8">
-                   <div className="glass-container p-12 rounded-[3.5rem] space-y-6">
-                      <div className="w-16 h-16 bg-slate-900 rounded-[1.5rem] flex items-center justify-center text-blue-500">
-                         <Terminal size={32} />
-                      </div>
-                      <h4 className="text-2xl font-black tracking-tight">Runtime Specs</h4>
-                      <p className="text-slate-500 font-medium leading-relaxed">Built with Next.js 16 and Electron for native desktop performance. The UI layer is optimized for sub-16ms frame times even during heavy PDF vectorization.</p>
-                   </div>
-                   <div className="glass-container p-12 rounded-[3.5rem] space-y-6 border-blue-600/10 bg-blue-600/5">
-                      <div className="w-16 h-16 bg-blue-600 rounded-[1.5rem] flex items-center justify-center text-white shadow-xl shadow-blue-600/20">
-                         <Database size={32} />
-                      </div>
-                      <h4 className="text-2xl font-black tracking-tight">Database Engine</h4>
-                      <p className="text-slate-700 font-medium leading-relaxed">Leverages SQLite with Prisma ORM. All schemas are strictly typed and locally encrypted using AES-256-GCM.</p>
-                   </div>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link href="/download" className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-2xl font-semibold hover:bg-blue-50 transition-colors">
+                    <Download size={18} /> Download free
+                  </Link>
+                  <Link href="/support" className="inline-flex items-center justify-center gap-2 border border-white/15 px-8 py-4 rounded-2xl font-semibold hover:bg-white/5 transition-colors">
+                    Get support
+                  </Link>
                 </div>
               </div>
-
-              {/* Dashboard Section */}
-              <section id="dashboard" className="space-y-12 scroll-mt-40">
-                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-orange-100 text-orange-600 text-[10px] font-black uppercase tracking-widest border border-orange-200">
-                  <Zap size={14} /> Intelligence
-                </div>
-                <h2 className="text-6xl font-black text-slate-900 tracking-tighter">Command Center.</h2>
-                <div className="glass-container p-16 rounded-[4rem] space-y-10 relative overflow-hidden">
-                   <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/5 blur-[100px] rounded-full -mr-32 -mt-32" />
-                   <p className="text-xl text-slate-600 font-medium leading-relaxed">The Dashboard is the brain of your workstation. It performs a "Template-to-Task" synchronization every time it mounts.</p>
-                   <div className="grid gap-6">
-                      {[
-                        { t: "Dynamic Greeting", d: "Context-aware greeting system based on the time of day and your current streak." },
-                        { t: "Rwanda High-Precision Clock", d: "Built-in precision timekeeping for synchronized study blocks." },
-                        { t: "XP & Rank Badge", d: "Gamified reward system that calculates experience points based on task difficulty." },
-                        { t: "Live Focus Mode", d: "Detects active study blocks and enables a distraction-free UI overlay." }
-                      ].map((feature, i) => (
-                        <div key={i} className="flex gap-6 items-start p-8 rounded-[2rem] bg-white border border-slate-100 shadow-sm">
-                           <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-900 font-black italic">{i+1}</div>
-                           <div>
-                              <h5 className="font-black text-slate-900 text-xl tracking-tight mb-1">{feature.t}</h5>
-                              <p className="text-slate-500 font-medium">{feature.d}</p>
-                           </div>
-                        </div>
-                      ))}
-                   </div>
-                </div>
-              </section>
-
-              {/* AI Engine Section */}
-              <section id="ai-engine" className="space-y-12 scroll-mt-40">
-                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest shadow-xl shadow-blue-600/20">
-                  <Brain size={14} /> Neural Integration
-                </div>
-                <h2 className="text-6xl font-black text-slate-900 tracking-tighter italic">Neural Engine.</h2>
-                <div className="bg-slate-900 rounded-[4rem] p-20 text-white space-y-12 relative overflow-hidden border-0">
-                   <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-600/20 to-transparent" />
-                   <div className="relative z-10 grid md:grid-cols-2 gap-20">
-                      <div className="space-y-8">
-                         <h4 className="text-3xl font-black tracking-tight">AI Study Assistant</h4>
-                         <p className="text-slate-400 text-lg font-medium leading-relaxed">Connect StudyFlow to state-of-the-art LLMs like Gemini 1.5 Pro or Llama 3 via Ollama. Unlock advanced capabilities directly from your sidebar.</p>
-                         <ul className="space-y-5">
-                            {[
-                              "Automated Flashcard Generation",
-                              "Complex Research Paper Summarization",
-                              "AI-Powered Note Refinement",
-                              "Natural Language Schedule Queries"
-                            ].map((item, i) => (
-                              <li key={i} className="flex items-center gap-4 text-blue-400 font-bold">
-                                 <div className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
-                                 {item}
-                              </li>
-                            ))}
-                         </ul>
-                      </div>
-                      <div className="glass-container bg-white/5 border-white/10 p-12 rounded-[3rem] space-y-8 h-fit">
-                         <h4 className="text-xl font-bold">Configuration Specs</h4>
-                         <div className="space-y-6">
-                            <div className="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-2">
-                               <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">API Key Encryption</p>
-                               <p className="font-mono text-sm text-blue-300">HMAC-SHA512 + Salted Local Storage</p>
-                            </div>
-                            <div className="p-6 rounded-2xl bg-white/5 border border-white/5 space-y-2">
-                               <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Default Endpoint</p>
-                               <p className="font-mono text-sm text-blue-300">https://generativelanguage.googleapis.com</p>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-              </section>
-
-              {/* Security Section */}
-              <section id="security" className="space-y-12 scroll-mt-40">
-                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-green-100 text-green-600 text-[10px] font-black uppercase tracking-widest border border-green-200">
-                  <Shield size={14} /> Sovereignty
-                </div>
-                <h2 className="text-6xl font-black text-slate-900 tracking-tighter leading-tight">Digital <br /> Sovereignty.</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                   {[
-                     { i: <Lock />, t: "Zero-Cloud", d: "No telemetry. No accounts. No data leaves your machine unless you explicitly export it." },
-                     { i: <Shield />, t: "AES-256-GCM", d: "Sensitive data like API keys and workspace notes are encrypted at rest." },
-                     { i: <Code />, t: "Open Audit", d: "Every line of our source code is public. Verify our security claims on GitHub anytime." }
-                   ].map((item, i) => (
-                      <div key={i} className="glass-container p-12 rounded-[3rem] space-y-6 hover:scale-105 transition-transform duration-500">
-                         <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-blue-600">
-                            {item.i}
-                         </div>
-                         <h4 className="text-xl font-black tracking-tight text-slate-900">{item.t}</h4>
-                         <p className="text-slate-500 font-medium text-sm leading-relaxed">{item.d}</p>
-                      </div>
-                   ))}
-                </div>
-              </section>
-
-              {/* Workload Section */}
-              <section id="workload" className="space-y-12 scroll-mt-40">
-                <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest border border-blue-200">
-                  <Clock size={14} /> Heatmaps
-                </div>
-                <h2 className="text-6xl font-black text-slate-900 tracking-tighter">Workload <br /> Visualizer.</h2>
-                <div className="glass-container p-16 rounded-[4rem] space-y-10">
-                   <p className="text-xl text-slate-600 font-medium leading-relaxed">The visualizer maps your <strong>ScheduleTemplates</strong> against the current month to generate a "Density Heatmap" of your study intensity.</p>
-                   <div className="bg-slate-50 border border-slate-100 p-8 rounded-[2rem] space-y-6">
-                      <div className="flex gap-2">
-                         {[...Array(7)].map((_, i) => (
-                           <div key={i} className={`h-8 w-8 rounded-md ${i > 4 ? 'bg-blue-600' : 'bg-blue-100'}`} />
-                         ))}
-                      </div>
-                      <p className="text-sm text-slate-500 font-medium italic">Figure 1.1: Typical Density Heatmap displaying high intensity (blue) vs low intensity (light blue) study blocks.</p>
-                   </div>
-                </div>
-              </section>
-
-              {/* Database Section */}
-              <section id="database" className="space-y-12 scroll-mt-40">
-                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest">
-                  <Database size={14} /> Schema V1.0
-                </div>
-                <h2 className="text-6xl font-black text-slate-900 tracking-tighter italic text-gradient">Local Schema.</h2>
-                <div className="bg-slate-900 rounded-[4rem] p-16 text-white space-y-12 border-0">
-                   <div className="space-y-8">
-                      <h4 className="text-2xl font-black tracking-tight flex items-center gap-3">
-                         <Code className="text-blue-500" size={24} />
-                         Prisma Model Definition
-                      </h4>
-                      <div className="p-8 bg-white/5 border border-white/5 rounded-[2rem] font-mono text-sm text-blue-300 leading-relaxed overflow-x-auto">
-                        <pre>{`model ScheduleTemplate {
-  id          String   @id @default(cuid())
-  subject     String
-  dayOfWeek   String   // MONDAY, TUESDAY...
-  startTime   String
-  endTime     String
-  type        String   // HOMEWORK, REVISION
-}
-
-model Task {
-  id          String   @id @default(cuid())
-  date        DateTime
-  isDone      Boolean  @default(false)
-  templateId  String
-}`}</pre>
-                      </div>
-                   </div>
-                </div>
-              </section>
-
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </Section>
         </main>
       </div>
     </div>
