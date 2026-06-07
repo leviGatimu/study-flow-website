@@ -6,8 +6,10 @@ import {
   BookOpen,
   CalendarDays,
   Check,
+  CloudOff,
   Database,
   Flame,
+  HardDrive,
   Lock,
   Shield,
   Sparkles,
@@ -132,30 +134,92 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Cool shape with text inside */}
+      {/* Local-first / privacy */}
       <section id="privacy" className="px-6 py-20 lg:py-28 scroll-mt-24">
-        <ScrollReveal className="max-w-6xl mx-auto">
-          <div
-            className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 text-white px-8 py-24 md:px-20 md:py-32 text-center"
-            style={{ borderRadius: "44% 56% 70% 30% / 38% 38% 62% 62%" }}
-          >
-            {/* floating splash accents */}
-            <div className="absolute top-10 left-12 w-24 h-24 bg-white/10 rounded-[40%_60%_55%_45%/55%_45%_60%_40%]" />
-            <div className="absolute bottom-12 right-16 w-32 h-32 bg-white/10 rounded-[60%_40%_45%_55%/45%_55%_50%_50%]" />
-            <div className="relative z-10 max-w-2xl mx-auto space-y-7">
-              <span className="inline-flex items-center gap-2 text-blue-100 text-[11px] font-bold uppercase tracking-[0.3em]">
-                <Shield size={14} /> Local-first by design
-              </span>
-              <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[0.98]">
-                Your data never <br /> leaves your device.
-              </h2>
-              <p className="text-lg md:text-xl text-blue-50/90 leading-relaxed">
-                No accounts, no servers, no sync you didn&apos;t ask for. Study Flow stores everything in a local, encrypted SQLite database — so your notes, grades and schedule stay yours alone.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 pt-2">
-                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><WifiOff size={15} /> Works offline</span>
-                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><Database size={15} /> SQLite + Prisma</span>
-                <span className="inline-flex items-center gap-2 bg-white/15 px-4 py-2 rounded-full text-sm font-semibold"><Lock size={15} /> Encrypted</span>
+        <ScrollReveal className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-slate-900 to-[#0a1020] text-white px-8 py-16 md:p-16 lg:p-20 border border-white/10">
+            {/* atmosphere */}
+            <div className="absolute -top-28 right-10 w-[440px] h-[440px] bg-blue-600/25 blur-[130px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-32 -left-20 w-[440px] h-[440px] bg-indigo-500/15 blur-[130px] rounded-full pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none [background-image:radial-gradient(rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:22px_22px]" />
+
+            <div className="relative z-10 grid lg:grid-cols-2 gap-14 lg:gap-16 items-center">
+              {/* copy */}
+              <div>
+                <span className="inline-flex items-center gap-2 text-blue-300 text-[11px] font-bold uppercase tracking-[0.3em]">
+                  <Shield size={14} /> Local-first by design
+                </span>
+                <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight leading-[0.98] mt-5">
+                  Your data never <br /> leaves your device.
+                </h2>
+                <p className="text-lg text-slate-300 leading-relaxed mt-6 max-w-lg">
+                  No accounts, no servers, no sync you didn&apos;t ask for. Study Flow keeps everything in a local,
+                  encrypted SQLite database — so your notes, grades and schedule stay yours alone.
+                </p>
+                <div className="flex flex-wrap gap-3 mt-8">
+                  {[
+                    { icon: <WifiOff size={15} />, label: "Works offline" },
+                    { icon: <Database size={15} />, label: "SQLite + Prisma" },
+                    { icon: <Lock size={15} />, label: "Encrypted" },
+                  ].map((b) => (
+                    <span key={b.label} className="inline-flex items-center gap-2 bg-white/[0.07] border border-white/10 px-4 py-2 rounded-full text-sm font-semibold text-slate-200">
+                      <span className="text-blue-300">{b.icon}</span>
+                      {b.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* device / vault visual */}
+              <div className="relative w-full max-w-sm mx-auto lg:ml-auto">
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+                  className="absolute -top-5 -right-2 z-20 inline-flex items-center gap-2 bg-white/10 border border-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-100 shadow-xl"
+                >
+                  <CloudOff size={15} className="text-rose-300" /> No cloud
+                </motion.div>
+
+                <div className="rounded-[1.9rem] border border-white/15 bg-white/[0.05] backdrop-blur-xl p-7 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.7)]">
+                  <div className="flex gap-1.5 mb-7">
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  </div>
+
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 rounded-[1.6rem] bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-[0_18px_44px_-10px_rgba(37,99,235,0.8)]">
+                      <Lock size={34} className="text-white" />
+                    </div>
+                    <p className="mt-5 font-display text-lg font-semibold">Your local vault</p>
+                    <p className="text-sm text-slate-400">Everything lives on this device</p>
+                  </div>
+
+                  <div className="mt-6 space-y-2.5">
+                    <div className="flex items-center justify-between bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3">
+                      <span className="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                        <Database size={16} className="text-blue-300" /> study.db
+                      </span>
+                      <span className="text-[11px] text-emerald-300 font-semibold flex items-center gap-1">
+                        <Lock size={11} /> encrypted
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3">
+                      <span className="flex items-center gap-2.5 text-sm font-medium text-slate-200">
+                        <HardDrive size={16} className="text-blue-300" /> On your disk
+                      </span>
+                      <span className="text-[11px] text-slate-400 font-semibold">no upload</span>
+                    </div>
+                  </div>
+                </div>
+
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 0.6 }}
+                  className="absolute -left-3 -bottom-4 z-20 inline-flex items-center gap-2 bg-white/10 border border-white/15 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-100 shadow-xl"
+                >
+                  <WifiOff size={15} className="text-blue-300" /> Works offline
+                </motion.div>
               </div>
             </div>
           </div>
