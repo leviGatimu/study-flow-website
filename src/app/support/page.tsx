@@ -35,6 +35,7 @@ const categories = [
     chip: "bg-emerald-500",
     blob: "bg-emerald-200",
     links: [
+      { label: "YouTube channel", href: "https://www.youtube.com/channel/UCF19E7DtMFwa0eRv1BNiPbw", external: true },
       { label: "Discord server", href: "https://discord.gg/RQQfJAUCy", external: true },
       { label: "GitHub repository", href: "https://github.com/leviGatimu/Study-Flow", external: true },
       { label: "Roadmap", href: "/download#roadmap" },

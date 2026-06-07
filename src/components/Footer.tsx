@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, MessageSquare, Send } from "lucide-react";
+import { ArrowUpRight, Github, MessageSquare, Youtube } from "lucide-react";
 import SandText from "@/components/SandText";
 import Logo from "@/components/Logo";
+
+const YOUTUBE_URL = "https://www.youtube.com/channel/UCF19E7DtMFwa0eRv1BNiPbw";
 
 // Stable references so SandText doesn't re-init each render.
 const INK_GRAINS = ["#000000", "#070707", "#0d0d0d", "#050505", "#111111", "#030303"];
@@ -31,6 +33,7 @@ const columns = [
     links: [
       { label: "Discord", href: "https://discord.gg/RQQfJAUCy", external: true },
       { label: "GitHub", href: "https://github.com/leviGatimu/Study-Flow", external: true },
+      { label: "YouTube", href: YOUTUBE_URL, external: true },
     ],
   },
 ];
@@ -62,8 +65,8 @@ export default function Footer() {
               <a href="https://discord.gg/RQQfJAUCy" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
                 <MessageSquare size={18} />
               </a>
-              <a href="#" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
-                <Send size={18} />
+              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-red-500 hover:text-red-500 transition-colors">
+                <Youtube size={18} />
               </a>
             </div>
           </div>
