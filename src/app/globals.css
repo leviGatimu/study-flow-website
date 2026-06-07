@@ -126,6 +126,56 @@ body {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Custom cursor (arrow that follows the pointer, theme-aware)        */
+/* ------------------------------------------------------------------ */
+
+@media (hover: hover) and (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(-100px, -100px, 0);
+  will-change: transform;
+  transition: opacity 0.25s ease;
+  /* light mode: dark arrow with a white edge */
+  --cur-fill: #0f172a;
+  --cur-stroke: #ffffff;
+}
+
+.dark .custom-cursor {
+  /* dark mode: white arrow with a dark edge (like the hero sticker) */
+  --cur-fill: #ffffff;
+  --cur-stroke: #0f172a;
+}
+
+.custom-cursor svg {
+  display: block;
+  fill: var(--cur-fill);
+  stroke: var(--cur-stroke);
+  filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.35));
+  transform-origin: 0 0;
+  transform: translate(-3px, -2px) rotate(-8deg) scale(1);
+  transition: transform 0.13s ease;
+}
+
+.custom-cursor.is-hover svg {
+  transform: translate(-3px, -2px) rotate(-8deg) scale(1.45);
+}
+
+.custom-cursor.is-down svg {
+  transform: translate(-3px, -2px) rotate(-8deg) scale(0.82);
+}
+
+/* ------------------------------------------------------------------ */
 /*  Dark mode                                                         */
 /* ------------------------------------------------------------------ */
 

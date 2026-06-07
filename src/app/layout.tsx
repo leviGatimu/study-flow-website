@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Study Flow | A Private, Local-First Study Workstation",
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased flex flex-col min-h-screen font-sans">
         <SmoothScroll />
+        <CustomCursor />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
