@@ -59,14 +59,14 @@ export default function Home() {
       <section className="px-6 pt-20 lg:pt-28">
         <div className="max-w-5xl mx-auto">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">See it in action</span>
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">The trailer</span>
             <h2 className="font-display text-4xl md:text-6xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.98] mt-4">
-              Watch the <span className="text-blue-600 dark:text-blue-400">quick tour.</span>
+              Meet <span className="text-blue-600 dark:text-blue-400">Study Flow.</span>
             </h2>
           </ScrollReveal>
           <ScrollReveal className="relative">
             <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-blue-300/30 dark:bg-blue-600/20 blur-2xl" />
-            <VideoEmbed id="Xcjc0py2L-U" title="Study Flow — quick tour" />
+            <VideoEmbed id="Xcjc0py2L-U" title="Study Flow" />
           </ScrollReveal>
         </div>
       </section>
