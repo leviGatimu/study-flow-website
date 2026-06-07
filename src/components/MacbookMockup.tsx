@@ -17,9 +17,9 @@ export default function MacbookMockup() {
         {/* Screen */}
         <div className="bg-slate-900 rounded-t-lg overflow-hidden border border-slate-800 aspect-[16/10] flex flex-col">
           {/* Dashboard UI Placeholder */}
-          <div className="flex-1 bg-slate-50 text-slate-900 flex flex-col overflow-hidden">
+          <div className="flex-1 bg-slate-50 dark:bg-white/[0.06] text-slate-900 dark:text-slate-50 flex flex-col overflow-hidden">
              {/* Nav Bar */}
-             <div className="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0">
+             <div className="bg-white dark:bg-slate-900 border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0">
                 <div className="flex items-center gap-6">
                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">S</div>
                    <div className="flex gap-4">
@@ -28,8 +28,8 @@ export default function MacbookMockup() {
                    </div>
                 </div>
                 <div className="flex items-center gap-4">
-                   <div className="w-32 h-8 bg-slate-50 border border-slate-200 rounded-full flex items-center px-3 gap-2">
-                      <Search size={12} className="text-slate-400" />
+                   <div className="w-32 h-8 bg-slate-50 dark:bg-white/[0.06] border border-slate-200 rounded-full flex items-center px-3 gap-2">
+                      <Search size={12} className="text-slate-400 dark:text-slate-500" />
                       <div className="w-20 h-1.5 bg-slate-200 rounded-full" />
                    </div>
                    <div className="w-8 h-8 bg-slate-200 rounded-full" />
@@ -42,8 +42,8 @@ export default function MacbookMockup() {
                    {/* Header Section */}
                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                       <div className="space-y-2">
-                         <h2 className="text-3xl font-black text-slate-900">Good Morning, Scholar</h2>
-                         <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                         <h2 className="text-3xl font-black text-slate-900 dark:text-slate-50">Good Morning, Scholar</h2>
+                         <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                             <Target size={12} />
                             Monday, June 6th, 2026
                          </div>
@@ -57,10 +57,10 @@ export default function MacbookMockup() {
                             </div>
                          </div>
                          <div className="bg-blue-50 border border-blue-100 px-4 py-2 rounded-2xl flex items-center gap-3">
-                            <Trophy className="text-blue-600 fill-blue-600/20" size={20} />
+                            <Trophy className="text-blue-600 dark:text-blue-400 fill-blue-600/20" size={20} />
                             <div>
-                               <p className="text-xl font-black text-blue-700 leading-none">45</p>
-                               <p className="text-[8px] font-bold text-blue-600/60 uppercase">XP Level</p>
+                               <p className="text-xl font-black text-blue-700 dark:text-blue-400 leading-none">45</p>
+                               <p className="text-[8px] font-bold text-blue-600 dark:text-blue-400/60 uppercase">XP Level</p>
                             </div>
                          </div>
                       </div>
@@ -75,7 +75,7 @@ export default function MacbookMockup() {
                             Currently Studying
                          </div>
                          <h3 className="text-3xl font-black tracking-tight">Advanced Networking</h3>
-                         <p className="text-slate-400 max-w-sm">Focusing on TCP/IP Protocol Layers. 45 minutes remaining in this block.</p>
+                         <p className="text-slate-400 dark:text-slate-500 max-w-sm">Focusing on TCP/IP Protocol Layers. 45 minutes remaining in this block.</p>
                       </div>
                       <div className="relative z-10 hidden md:block">
                          <div className="w-24 h-24 rounded-full border-4 border-white/10 flex items-center justify-center relative">
@@ -96,20 +96,20 @@ export default function MacbookMockup() {
                    {/* Grid Content */}
                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-6">
-                         <h4 className="text-xl font-bold flex justify-between">Today's Focus <span className="text-slate-400 text-sm font-medium">3/5 Tasks</span></h4>
+                         <h4 className="text-xl font-bold flex justify-between">Today's Focus <span className="text-slate-400 dark:text-slate-500 text-sm font-medium">3/5 Tasks</span></h4>
                          <div className="space-y-3">
                             {[
                                { t: "Networking HW", d: "Due tomorrow", done: true },
                                { t: "C Programming", d: "Chapter 4 Rev", done: true },
                                { t: "Physics Lab", d: "Drafting Report", done: false }
                             ].map((task, i) => (
-                               <div key={i} className={`p-5 rounded-2xl border transition-all flex items-center gap-4 ${task.done ? 'bg-slate-50 border-slate-100 opacity-60' : 'bg-white border-slate-200 shadow-sm'}`}>
+                               <div key={i} className={`p-5 rounded-2xl border transition-all flex items-center gap-4 ${task.done ? 'bg-slate-50 dark:bg-white/[0.06] border-slate-100 opacity-60' : 'bg-white dark:bg-slate-900 border-slate-200 shadow-sm'}`}>
                                   <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${task.done ? 'bg-blue-600 border-blue-600 text-white' : 'border-slate-200'}`}>
                                      {task.done && <CheckCircle2 size={12} />}
                                   </div>
                                   <div>
                                      <p className="font-bold">{task.t}</p>
-                                     <p className="text-xs text-slate-400 font-bold uppercase">{task.d}</p>
+                                     <p className="text-xs text-slate-400 dark:text-slate-500 font-bold uppercase">{task.d}</p>
                                   </div>
                                </div>
                             ))}
@@ -120,8 +120,8 @@ export default function MacbookMockup() {
                          <div className="bg-orange-50/50 border border-orange-100 p-8 rounded-[2rem] space-y-4">
                             <p className="text-[10px] font-black text-orange-600 uppercase tracking-widest">Next Exam: DBMS</p>
                             <div className="flex items-baseline gap-2">
-                               <span className="text-5xl font-black text-slate-900">04</span>
-                               <span className="text-xl font-bold text-slate-400">days left</span>
+                               <span className="text-5xl font-black text-slate-900 dark:text-slate-50">04</span>
+                               <span className="text-xl font-bold text-slate-400 dark:text-slate-500">days left</span>
                             </div>
                             <div className="w-full h-1 bg-orange-200 rounded-full overflow-hidden">
                                <div className="w-2/3 h-full bg-orange-500" />

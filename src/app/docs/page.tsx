@@ -81,7 +81,7 @@ function Feature({
   i?: number;
 }) {
   return (
-    <div className="relative h-full overflow-hidden bg-white rounded-[1.5rem] p-7 border border-black/[0.06] shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)]">
+    <div className="relative h-full overflow-hidden bg-white dark:bg-slate-900 rounded-[1.5rem] p-7 border border-black/[0.06] dark:border-white/10 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)]">
       <div
         className={`absolute -top-8 -right-6 w-32 h-32 ${blobColors[color]} opacity-60`}
         style={{ borderRadius: blobRadii[i % blobRadii.length] }}
@@ -90,8 +90,8 @@ function Feature({
         <div className={`w-12 h-12 ${chipColors[color]} rounded-2xl flex items-center justify-center text-white mb-5 shadow-[0_12px_26px_-12px_rgba(15,23,42,0.6)]`}>
           {icon}
         </div>
-        <h4 className="font-display text-xl font-semibold text-slate-900 tracking-tight mb-1.5">{title}</h4>
-        <p className="text-slate-500 leading-relaxed text-[15px]">{children}</p>
+        <h4 className="font-display text-xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mb-1.5">{title}</h4>
+        <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-[15px]">{children}</p>
       </div>
     </div>
   );
@@ -104,8 +104,8 @@ function Step({ n, title, children }: { n: string; title: string; children: Reac
         {n}
       </span>
       <div className="pt-1">
-        <h4 className="font-display text-lg font-semibold text-slate-900 mb-1">{title}</h4>
-        <p className="text-slate-500 leading-relaxed">{children}</p>
+        <h4 className="font-display text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1">{title}</h4>
+        <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{children}</p>
       </div>
     </div>
   );
@@ -116,8 +116,8 @@ function Callout({ icon, title, children }: { icon: ReactNode; title: string; ch
     <div className="flex gap-4 bg-blue-600/[0.06] border border-blue-600/15 rounded-[1.5rem] p-6">
       <span className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0">{icon}</span>
       <div>
-        <p className="font-display font-semibold text-slate-900 mb-1">{title}</p>
-        <p className="text-slate-600 leading-relaxed text-[15px]">{children}</p>
+        <p className="font-display font-semibold text-slate-900 dark:text-slate-50 mb-1">{title}</p>
+        <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-[15px]">{children}</p>
       </div>
     </div>
   );
@@ -125,7 +125,7 @@ function Callout({ icon, title, children }: { icon: ReactNode; title: string; ch
 
 function Kbd({ children }: { children: ReactNode }) {
   return (
-    <kbd className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white border border-black/10 shadow-sm text-sm font-semibold text-slate-700">
+    <kbd className="inline-flex items-center px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-black/10 dark:border-white/10 shadow-sm text-sm font-semibold text-slate-700 dark:text-slate-200">
       {children}
     </kbd>
   );
@@ -134,8 +134,8 @@ function Kbd({ children }: { children: ReactNode }) {
 function Section({ id, eyebrow, title, children }: { id: string; eyebrow: string; title: string; children: ReactNode }) {
   return (
     <section id={id} className="scroll-mt-28 pt-4">
-      <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">{eyebrow}</span>
-      <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.0] mt-4 mb-7">{title}</h2>
+      <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">{eyebrow}</span>
+      <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[1.0] mt-4 mb-7">{title}</h2>
       <div className="space-y-6">{children}</div>
     </section>
   );
@@ -191,13 +191,13 @@ export default function Docs() {
             transition={{ duration: 0.7, ease: [0.21, 0.5, 0.3, 1] }}
             className="max-w-3xl"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-black/[0.06] dark:border-white/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
               <BookOpen size={13} /> Documentation
             </span>
-            <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
-              How Study <br /> Flow <span className="text-blue-600">works.</span>
+            <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.9] mt-6">
+              How Study <br /> Flow <span className="text-blue-600 dark:text-blue-400">works.</span>
             </h1>
-            <p className="text-xl text-slate-500 leading-relaxed mt-6">
+            <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6">
               Everything you need to turn a weekly timetable into a daily rhythm — from the recurring task engine to the built-in AI study tools. Private, offline, and entirely yours.
             </p>
           </motion.div>
@@ -209,13 +209,13 @@ export default function Docs() {
         {/* Sidebar */}
         <aside className="hidden lg:block">
           <div className="sticky top-28 space-y-1">
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 px-4 mb-3">On this page</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 dark:text-slate-500 px-4 mb-3">On this page</p>
             {NAV.map((n) => (
               <a
                 key={n.id}
                 href={`#${n.id}`}
                 className={`block px-4 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
-                  active === n.id ? "bg-slate-900 text-white" : "text-slate-500 hover:text-slate-900 hover:bg-black/[0.04]"
+                  active === n.id ? "bg-slate-900 text-white" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 hover:bg-black/[0.04]"
                 }`}
               >
                 {n.label}
@@ -236,7 +236,7 @@ export default function Docs() {
         <main className="min-w-0 space-y-24">
           {/* Overview */}
           <Section id="overview" eyebrow="Overview" title="A complete student workstation.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Study Flow is a local-first desktop and web app for students. It turns a recurring weekly timetable
               into automatically-generated daily tasks, then layers a full academic workspace on top — exams, grades,
               homework, focus sessions, projects, and a private AI study assistant. There is no cloud and no account on
@@ -269,7 +269,7 @@ export default function Docs() {
             <div className="space-y-7">
               <Step n="1" title="Download & install">
                 Grab the installer from the{" "}
-                <Link href="/download" className="text-blue-600 font-semibold hover:underline">
+                <Link href="/download" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
                   download page
                 </Link>{" "}
                 and run it. Study Flow ships as a desktop app (and an installable PWA), so it lives in your dock like
@@ -296,7 +296,7 @@ export default function Docs() {
 
           {/* Dashboard */}
           <Section id="dashboard" eyebrow="Daily use" title="The dashboard.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               The dashboard is your command center and the default landing screen. It opens to a personalised greeting,
               the current date and time, and a daily verse for a little motivation.
             </p>
@@ -320,7 +320,7 @@ export default function Docs() {
 
           {/* Timetable engine */}
           <Section id="timetable" eyebrow="The engine" title="Recurring timetable, automated.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Study Flow behaves like a recurring timetable engine, not a static to-do list. You define{" "}
               <strong>schedule templates</strong> once and the app generates dated task instances automatically.
             </p>
@@ -371,7 +371,7 @@ export default function Docs() {
 
           {/* Academics */}
           <Section id="academics" eyebrow="Academics" title="Subjects, marks & goals.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Keep the academic side of school in one place — your subjects, your results, and the targets you&apos;re
               chasing this term.
             </p>
@@ -400,7 +400,7 @@ export default function Docs() {
 
           {/* AI tools */}
           <Section id="ai" eyebrow="Intelligence" title="AI study tools.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Study Flow includes a private AI layer. It runs on <strong>your own</strong> Google Gemini or OpenAI
               key — your notes and questions go directly from your machine to the provider you chose, with nothing
               stored on our side.
@@ -470,11 +470,11 @@ export default function Docs() {
 
           {/* Shortcuts */}
           <Section id="shortcuts" eyebrow="Power user" title="Shortcuts & command menu.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Move at speed with keyboard shortcuts and a command menu that jumps to any tool, homework, tutor module,
               note or project.
             </p>
-            <div className="bg-white rounded-[1.5rem] border border-black/[0.06] shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)] divide-y divide-black/5">
+            <div className="bg-white dark:bg-slate-900 rounded-[1.5rem] border border-black/[0.06] dark:border-white/10 shadow-[0_24px_50px_-34px_rgba(15,23,42,0.3)] divide-y divide-black/5">
               {[
                 { keys: ["Ctrl/⌘", "E"], label: "Open the command menu" },
                 { keys: ["Alt", "D"], label: "Go to the dashboard" },
@@ -482,7 +482,7 @@ export default function Docs() {
                 { keys: ["Alt", "C"], label: "Open the calculator" },
               ].map((s) => (
                 <div key={s.label} className="flex items-center justify-between px-6 py-4">
-                  <span className="text-slate-600 font-medium">{s.label}</span>
+                  <span className="text-slate-600 dark:text-slate-300 font-medium">{s.label}</span>
                   <span className="flex items-center gap-1.5">
                     {s.keys.map((k, idx) => (
                       <span key={k} className="flex items-center gap-1.5">
@@ -498,7 +498,7 @@ export default function Docs() {
 
           {/* Privacy */}
           <Section id="privacy" eyebrow="Your data" title="Privacy & how it's built.">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               Study Flow is local-first by design. Your schedule, grades, notes and chats live in a single SQLite
               database on your device — there is no account on our servers and nothing to leak.
             </p>
@@ -525,12 +525,12 @@ export default function Docs() {
                 { q: "Where is my data stored?", a: "In a local SQLite database on your machine. You can back it up by copying the database file." },
                 { q: "How do daily tasks appear?", a: "When the dashboard loads, the engine reads your weekly templates and generates that day's tasks automatically, avoiding duplicates." },
               ].map((f) => (
-                <details key={f.q} className="group bg-white rounded-[1.25rem] border border-black/[0.06] shadow-[0_24px_50px_-40px_rgba(15,23,42,0.3)] p-6 open:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.3)]">
-                  <summary className="flex items-center justify-between cursor-pointer list-none font-display text-lg font-semibold text-slate-900">
+                <details key={f.q} className="group bg-white dark:bg-slate-900 rounded-[1.25rem] border border-black/[0.06] dark:border-white/10 shadow-[0_24px_50px_-40px_rgba(15,23,42,0.3)] p-6 open:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.3)]">
+                  <summary className="flex items-center justify-between cursor-pointer list-none font-display text-lg font-semibold text-slate-900 dark:text-slate-50">
                     {f.q}
-                    <ChevronRight size={18} className="text-slate-400 transition-transform group-open:rotate-90" />
+                    <ChevronRight size={18} className="text-slate-400 dark:text-slate-500 transition-transform group-open:rotate-90" />
                   </summary>
-                  <p className="text-slate-500 leading-relaxed mt-3 text-[15px]">{f.a}</p>
+                  <p className="text-slate-500 dark:text-slate-400 leading-relaxed mt-3 text-[15px]">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -544,7 +544,7 @@ export default function Docs() {
                   Download Study Flow and turn your timetable into a calmer, more consistent semester.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Link href="/download" className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-2xl font-semibold hover:bg-blue-50 transition-colors">
+                  <Link href="/download" className="btn-on-dark inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-semibold transition-colors">
                     <Download size={18} /> Download free
                   </Link>
                   <Link href="/support" className="inline-flex items-center justify-center gap-2 border border-white/15 px-8 py-4 rounded-2xl font-semibold hover:bg-white/5 transition-colors">

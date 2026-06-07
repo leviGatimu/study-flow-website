@@ -65,14 +65,14 @@ export default function About() {
       <section className="px-6 pt-40 pb-16">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="max-w-4xl">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-black/[0.06] dark:border-white/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
               <Sparkles size={13} /> About Study Flow
             </span>
-            <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
+            <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.9] mt-6">
               Study software <br />
-              that gets <span className="text-blue-600">out of your way.</span>
+              that gets <span className="text-blue-600 dark:text-blue-400">out of your way.</span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-500 leading-relaxed mt-7 max-w-2xl">
+            <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 leading-relaxed mt-7 max-w-2xl">
               Study Flow is a private, local-first workstation for students. It turns a weekly timetable into an
               automatic daily plan — then wraps every other part of school around it.
             </p>
@@ -84,11 +84,11 @@ export default function About() {
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <ScrollReveal direction="right">
-            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">Why we built it</span>
-            <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight leading-[1.0] mt-4 mb-7">
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">Why we built it</span>
+            <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[1.0] mt-4 mb-7">
               Born from a messy routine.
             </h2>
-            <div className="space-y-5 text-lg text-slate-600 leading-relaxed">
+            <div className="space-y-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
               <p>
                 Study Flow started as one student&apos;s fix for a scattered week — homework in one app, a timetable on
                 paper, revision held together by memory. Nothing talked to each other, and the planning itself ate the
@@ -113,15 +113,15 @@ export default function About() {
 
           <ScrollReveal direction="left" className="relative">
             <div className="absolute -inset-5 bg-blue-300/30 -z-10" style={{ borderRadius: blobRadii[1] }} />
-            <div className="relative bg-white rounded-[2rem] border border-black/[0.06] shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)] p-10 md:p-12">
+            <div className="relative bg-white dark:bg-slate-900 rounded-[2rem] border border-black/[0.06] dark:border-white/10 shadow-[0_40px_80px_-40px_rgba(15,23,42,0.4)] p-10 md:p-12">
               <div className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-7">
                 <Quote size={22} />
               </div>
-              <p className="font-display text-2xl md:text-3xl font-semibold text-slate-900 leading-snug tracking-tight">
+              <p className="font-display text-2xl md:text-3xl font-semibold text-slate-900 dark:text-slate-50 leading-snug tracking-tight">
                 &ldquo;Whatever your hand finds to do, do it with all your might.&rdquo;
               </p>
-              <p className="text-slate-400 font-semibold mt-5 text-sm uppercase tracking-[0.18em]">Ecclesiastes 9:10</p>
-              <p className="text-slate-500 leading-relaxed mt-6">
+              <p className="text-slate-400 dark:text-slate-500 font-semibold mt-5 text-sm uppercase tracking-[0.18em]">Ecclesiastes 9:10</p>
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed mt-6">
                 It&apos;s the verse that greets you on the dashboard every morning — and the spirit the whole app is
                 built around.
               </p>
@@ -134,16 +134,16 @@ export default function About() {
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="max-w-2xl mb-14">
-            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">What we believe</span>
-            <h2 className="font-display text-4xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[0.98] mt-4">
-              Principles, not <span className="text-blue-600">features.</span>
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">What we believe</span>
+            <h2 className="font-display text-4xl md:text-6xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.98] mt-4">
+              Principles, not <span className="text-blue-600 dark:text-blue-400">features.</span>
             </h2>
           </ScrollReveal>
 
           <div className="grid sm:grid-cols-2 gap-6">
             {values.map((v, i) => (
               <ScrollReveal key={v.title} delay={(i % 2) * 0.08}>
-                <div className="relative h-full overflow-hidden bg-white rounded-[1.75rem] p-8 border border-black/[0.06] shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]">
+                <div className="relative h-full overflow-hidden bg-white dark:bg-slate-900 rounded-[1.75rem] p-8 border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]">
                   <div
                     className={`absolute -top-10 -right-8 w-40 h-40 ${v.blob} opacity-60`}
                     style={{ borderRadius: blobRadii[i % blobRadii.length] }}
@@ -152,8 +152,8 @@ export default function About() {
                     <div className={`w-14 h-14 ${v.chip} rounded-2xl flex items-center justify-center text-white mb-6 shadow-[0_14px_30px_-12px_rgba(15,23,42,0.55)]`}>
                       {v.icon}
                     </div>
-                    <h3 className="font-display text-2xl font-semibold text-slate-900 tracking-tight mb-2">{v.title}</h3>
-                    <p className="text-slate-500 leading-relaxed">{v.desc}</p>
+                    <h3 className="font-display text-2xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mb-2">{v.title}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{v.desc}</p>
                   </div>
                 </div>
               </ScrollReveal>
@@ -165,11 +165,11 @@ export default function About() {
       {/* Stats strip */}
       <section className="px-6 py-16 lg:py-20">
         <ScrollReveal className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-[2rem] border border-black/[0.06] shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-black/[0.06]">
+          <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-black/[0.06] dark:divide-white/10">
             {stats.map((s) => (
               <div key={s.l} className="p-8 lg:p-10 text-center">
-                <p className="font-display text-5xl md:text-6xl font-semibold text-slate-900 tracking-tight">{s.v}</p>
-                <p className="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-3">{s.l}</p>
+                <p className="font-display text-5xl md:text-6xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight">{s.v}</p>
+                <p className="text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mt-3">{s.l}</p>
               </div>
             ))}
           </div>
@@ -192,7 +192,7 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/download"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-9 py-5 rounded-2xl text-lg font-semibold hover:bg-blue-50 transition-colors"
+                  className="btn-on-dark inline-flex items-center justify-center gap-2 px-9 py-5 rounded-2xl text-lg font-semibold transition-colors"
                 >
                   Download free
                 </Link>

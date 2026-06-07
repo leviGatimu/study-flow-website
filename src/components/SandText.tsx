@@ -6,6 +6,7 @@ interface SandTextProps {
   lines?: string[];
   className?: string;
   colors?: string[];
+  darkColors?: string[];
 }
 
 interface Particle {
@@ -26,7 +27,7 @@ const SAND_COLORS = ["#bfdbfe", "#93c5fd", "#60a5fa", "#3b82f6", "#e0ecff", "#25
  * rest in the shape of the text but scatter away from the pointer like fluid
  * sand, then flow back into place — an interactive footer centrepiece.
  */
-export default function SandText({ lines = ["STUDY", "FLOW"], className, colors = SAND_COLORS }: SandTextProps) {
+export default function SandText({ lines = ["STUDY", "FLOW"], className, colors = SAND_COLORS, darkColors }: SandTextProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointer = useRef({ x: -9999, y: -9999, active: false, vx: 0, vy: 0, px: 0, py: 0 });
 
@@ -95,6 +96,10 @@ export default function SandText({ lines = ["STUDY", "FLOW"], className, colors 
         }
       }
 
+      // Pick the palette that suits the current theme.
+      const palette =
+        darkColors && document.documentElement.classList.contains("dark") ? darkColors : colors;
+
       // Reuse / pool particles so a resize doesn't snap everything.
       const next: Particle[] = [];
       for (let i = 0; i < targets.length; i++) {
@@ -108,7 +113,7 @@ export default function SandText({ lines = ["STUDY", "FLOW"], className, colors 
           tx: t.x,
           ty: t.y,
           size: gap <= 3 ? 1.6 : Math.random() < 0.5 ? 1.7 : 2.4,
-          color: colors[(Math.random() * colors.length) | 0],
+          color: palette[(Math.random() * palette.length) | 0],
         });
       }
       particles = next;
@@ -217,6 +222,10 @@ export default function SandText({ lines = ["STUDY", "FLOW"], className, colors 
     );
     io.observe(canvas);
 
+    // Recolour the grains when the site theme is toggled.
+    const themeObserver = new MutationObserver(() => start());
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const onResize = () => start();
     window.addEventListener("resize", onResize);
     canvas.addEventListener("mousemove", onMouseMove);
@@ -227,13 +236,14 @@ export default function SandText({ lines = ["STUDY", "FLOW"], className, colors 
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
+      themeObserver.disconnect();
       window.removeEventListener("resize", onResize);
       canvas.removeEventListener("mousemove", onMouseMove);
       canvas.removeEventListener("touchmove", onTouchMove);
       canvas.removeEventListener("mouseleave", onLeave);
       canvas.removeEventListener("touchend", onLeave);
     };
-  }, [lines, colors]);
+  }, [lines, colors, darkColors]);
 
   return <canvas ref={canvasRef} className={className} aria-label={lines.join(" ")} role="img" />;
 }

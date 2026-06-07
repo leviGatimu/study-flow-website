@@ -17,7 +17,7 @@ export default function Logo({ size = 36, withText = true, textClassName, href =
     <span className="inline-flex items-center gap-2.5">
       <Image src="/logo.png" alt="Study Flow logo" width={size} height={size} className="rounded-full" priority />
       {withText && (
-        <span className={textClassName ?? "font-display text-xl font-semibold tracking-tight text-slate-900"}>
+        <span className={textClassName ?? "font-display text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50"}>
           Study Flow
         </span>
       )}

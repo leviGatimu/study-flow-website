@@ -17,13 +17,13 @@ export default function NotFound() {
       />
 
       <div className="relative max-w-xl mx-auto">
-        <p className="font-display text-[9rem] md:text-[12rem] font-semibold text-slate-900 leading-none tracking-tight">
-          4<span className="text-blue-600">0</span>4
+        <p className="font-display text-[9rem] md:text-[12rem] font-semibold text-slate-900 dark:text-slate-50 leading-none tracking-tight">
+          4<span className="text-blue-600 dark:text-blue-400">0</span>4
         </p>
-        <h1 className="font-display text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight mt-2">
+        <h1 className="font-display text-3xl md:text-4xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mt-2">
           This page wandered off.
         </h1>
-        <p className="text-lg text-slate-500 leading-relaxed mt-4 max-w-md mx-auto">
+        <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed mt-4 max-w-md mx-auto">
           The link might be old or mistyped. Let&apos;s get you back to something useful.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
@@ -35,7 +35,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/docs"
-            className="inline-flex items-center justify-center gap-2 bg-white border border-black/10 text-slate-900 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-50 transition-colors"
+            className="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-white/10 text-slate-900 dark:text-slate-50 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-50 transition-colors"
           >
             <BookOpen size={18} /> Read the docs
           </Link>

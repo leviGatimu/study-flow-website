@@ -49,13 +49,13 @@ export default function Terms() {
       {/* Hero */}
       <section className="px-6 pt-40 pb-10 text-center">
         <ScrollReveal className="max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-black/[0.06] dark:border-white/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
             <Scale size={13} /> Terms
           </span>
-          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
-            Terms of <span className="text-blue-600">service.</span>
+          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.9] mt-6">
+            Terms of <span className="text-blue-600 dark:text-blue-400">service.</span>
           </h1>
-          <p className="text-xl text-slate-500 leading-relaxed mt-6 max-w-xl mx-auto">
+          <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6 max-w-xl mx-auto">
             The plain-language rules for using Study Flow.
           </p>
         </ScrollReveal>
@@ -66,20 +66,20 @@ export default function Terms() {
         <div className="max-w-3xl mx-auto space-y-6">
           {sections.map((s, i) => (
             <ScrollReveal key={s.title} delay={(i % 2) * 0.06}>
-              <section className="bg-white rounded-[1.5rem] border border-black/[0.06] shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] p-8 md:p-10">
+              <section className="bg-white dark:bg-slate-900 rounded-[1.5rem] border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] p-8 md:p-10">
                 <div className="flex items-center gap-4 mb-5">
                   <span className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center flex-shrink-0">
                     {s.icon}
                   </span>
-                  <h2 className="font-display text-2xl font-semibold text-slate-900 tracking-tight">{s.title}</h2>
+                  <h2 className="font-display text-2xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight">{s.title}</h2>
                 </div>
-                <p className="text-slate-600 text-lg leading-relaxed">{s.content}</p>
+                <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">{s.content}</p>
               </section>
             </ScrollReveal>
           ))}
 
           <ScrollReveal className="pt-6 text-center">
-            <p className="text-sm text-slate-400 mb-6">Last updated 2026 · See also our <Link href="/privacy" className="text-blue-600 font-semibold hover:underline">privacy policy</Link>.</p>
+            <p className="text-sm text-slate-400 dark:text-slate-500 mb-6">Last updated 2026 · See also our <Link href="/privacy" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">privacy policy</Link>.</p>
             <Link href="/" className="inline-flex items-center justify-center bg-slate-900 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-colors">
               Back to home
             </Link>

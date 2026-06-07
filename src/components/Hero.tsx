@@ -45,7 +45,7 @@ function Floaty({
 
 const cardVariants: Record<string, string> = {
   amber: "bg-gradient-to-br from-amber-300 to-amber-400 text-amber-950",
-  light: "bg-white text-slate-900",
+  light: "bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50",
   dark: "bg-slate-900 text-white",
   green: "bg-gradient-to-br from-emerald-400 to-green-500 text-white",
   blue: "bg-gradient-to-br from-blue-500 to-blue-600 text-white",
@@ -83,7 +83,7 @@ const FAN = [
 export default function Hero() {
   return (
     <section className="relative">
-      <div className="relative overflow-hidden bg-[#ececec] min-h-screen flex flex-col">
+      <div className="relative overflow-hidden bg-[#ececec] dark:bg-[#0a0e17] min-h-screen flex flex-col">
         {/* Stage */}
         <div className="relative flex-1 flex flex-col items-center justify-center text-center px-6 pb-24 pt-24">
           {/* ---- floating assets (lg and up) ---- */}
@@ -106,7 +106,7 @@ export default function Hero() {
             {/* green focus toggle */}
             <Floaty rotate={-4} className="right-[16%] top-[13%]" z={30} float={16} duration={7.5}>
               <div className="w-[116px] h-[64px] rounded-full bg-green-500 border-4 border-white shadow-[0_24px_44px_-14px_rgba(0,0,0,0.4)] flex items-center px-2 justify-end">
-                <div className="w-[46px] h-[46px] rounded-full bg-white shadow-md" />
+                <div className="w-[46px] h-[46px] rounded-full bg-white dark:bg-slate-900 shadow-md" />
               </div>
             </Floaty>
 
@@ -137,18 +137,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.21, 0.5, 0.3, 1] }}
-            className="relative z-50 font-display font-bold text-slate-900 leading-[0.9] tracking-[-0.03em] text-6xl sm:text-7xl lg:text-[8.5rem] xl:text-[10rem]"
+            className="relative z-50 font-display font-bold text-slate-900 dark:text-slate-50 leading-[0.9] tracking-[-0.03em] text-6xl sm:text-7xl lg:text-[8.5rem] xl:text-[10rem]"
           >
             <span className="block">Studying</span>
             <span className="block">that feels</span>
-            <span className="block text-blue-600">effortless</span>
+            <span className="block text-blue-600 dark:text-blue-400">effortless</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="relative z-50 mt-10 max-w-md text-slate-600 text-lg leading-relaxed"
+            className="relative z-50 mt-10 max-w-md text-slate-600 dark:text-slate-300 text-lg leading-relaxed"
           >
             Designed for focused students — your weekly timetable becomes a daily rhythm, from the first task of the morning to the final exam.
           </motion.p>

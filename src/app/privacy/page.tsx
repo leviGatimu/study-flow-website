@@ -42,13 +42,13 @@ export default function Privacy() {
       {/* Hero */}
       <section className="px-6 pt-40 pb-10 text-center">
         <ScrollReveal className="max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-black/[0.06] dark:border-white/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
             <ShieldCheck size={13} /> Privacy
           </span>
-          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
-            Privacy <span className="text-blue-600">policy.</span>
+          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.9] mt-6">
+            Privacy <span className="text-blue-600 dark:text-blue-400">policy.</span>
           </h1>
-          <p className="text-xl text-slate-500 leading-relaxed mt-6 max-w-xl mx-auto">
+          <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6 max-w-xl mx-auto">
             The short version: your data stays on your device. Here&apos;s exactly how Study Flow handles it.
           </p>
         </ScrollReveal>
@@ -59,18 +59,18 @@ export default function Privacy() {
         <div className="max-w-3xl mx-auto space-y-6">
           {sections.map((s, i) => (
             <ScrollReveal key={s.title} delay={(i % 2) * 0.06}>
-              <section className="bg-white rounded-[1.5rem] border border-black/[0.06] shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] p-8 md:p-10">
+              <section className="bg-white dark:bg-slate-900 rounded-[1.5rem] border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-40px_rgba(15,23,42,0.3)] p-8 md:p-10">
                 <div className="flex items-center gap-4 mb-5">
                   <span className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center flex-shrink-0">
                     {s.icon}
                   </span>
-                  <h2 className="font-display text-2xl font-semibold text-slate-900 tracking-tight">{s.title}</h2>
+                  <h2 className="font-display text-2xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight">{s.title}</h2>
                 </div>
-                <p className="text-slate-600 text-lg leading-relaxed">{s.content}</p>
+                <p className="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">{s.content}</p>
                 {s.list && (
                   <ul className="space-y-3 pt-5">
                     {s.list.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-slate-600">
+                      <li key={item} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                         <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2.5 flex-shrink-0" />
                         {item}
                       </li>
@@ -82,7 +82,7 @@ export default function Privacy() {
           ))}
 
           <ScrollReveal className="pt-6 text-center">
-            <p className="text-sm text-slate-400 mb-6">Last updated 2026 · Questions? <Link href="/support" className="text-blue-600 font-semibold hover:underline">Get in touch</Link>.</p>
+            <p className="text-sm text-slate-400 dark:text-slate-500 mb-6">Last updated 2026 · Questions? <Link href="/support" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">Get in touch</Link>.</p>
             <Link href="/" className="inline-flex items-center justify-center bg-slate-900 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-colors">
               Back to home
             </Link>

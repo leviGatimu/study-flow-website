@@ -3,8 +3,9 @@ import { ArrowUpRight, Github, MessageSquare, Send } from "lucide-react";
 import SandText from "@/components/SandText";
 import Logo from "@/components/Logo";
 
-// Stable reference so SandText doesn't re-init each render.
+// Stable references so SandText doesn't re-init each render.
 const INK_GRAINS = ["#000000", "#070707", "#0d0d0d", "#050505", "#111111", "#030303"];
+const LIGHT_GRAINS = ["#ffffff", "#e9eefb", "#cdd8f2", "#aebfe6", "#dde6fa", "#8fa6dd"];
 
 const columns = [
   {
@@ -36,13 +37,13 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#ececec] text-slate-600 overflow-hidden border-t border-black/10">
+    <footer className="relative bg-[#ececec] dark:bg-[#0a0e17] text-slate-600 dark:text-slate-300 overflow-hidden border-t border-black/10 dark:border-white/10">
       <div className="relative max-w-7xl mx-auto px-6 pt-28">
-        <div className="grid md:grid-cols-12 gap-12 pb-24 border-b border-black/10">
+        <div className="grid md:grid-cols-12 gap-12 pb-24 border-b border-black/10 dark:border-white/10">
           {/* brand + CTA */}
           <div className="md:col-span-5 space-y-8">
-            <Logo size={40} textClassName="font-display text-2xl font-semibold tracking-tight text-slate-900" />
-            <p className="text-lg leading-relaxed max-w-sm text-slate-500">
+            <Logo size={40} textClassName="font-display text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50" />
+            <p className="text-lg leading-relaxed max-w-sm text-slate-500 dark:text-slate-400">
               A private, local-first study workstation. Turn your timetable into a daily rhythm — no cloud, no login, no noise.
             </p>
             <Link
@@ -55,13 +56,13 @@ export default function Footer() {
               </span>
             </Link>
             <div className="flex gap-5 pt-2">
-              <a href="https://github.com/leviGatimu/Study-Flow" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+              <a href="https://github.com/leviGatimu/Study-Flow" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
                 <Github size={18} />
               </a>
-              <a href="https://discord.gg/RQQfJAUCy" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+              <a href="https://discord.gg/RQQfJAUCy" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
                 <MessageSquare size={18} />
               </a>
-              <a href="#" className="w-11 h-11 rounded-full border border-black/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
+              <a href="#" className="w-11 h-11 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 transition-colors">
                 <Send size={18} />
               </a>
             </div>
@@ -71,13 +72,13 @@ export default function Footer() {
           <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10">
             {columns.map((col) => (
               <div key={col.title}>
-                <h3 className="text-blue-600 font-semibold mb-6 text-xs uppercase tracking-[0.25em]">{col.title}</h3>
+                <h3 className="text-blue-600 dark:text-blue-400 font-semibold mb-6 text-xs uppercase tracking-[0.25em]">{col.title}</h3>
                 <ul className="space-y-4 text-[15px]">
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 group"
+                        className="text-slate-500 dark:text-slate-400 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 group"
                       >
                         {link.label}
                         {"external" in link && link.external && (
@@ -93,7 +94,7 @@ export default function Footer() {
         </div>
 
         {/* bottom meta */}
-        <div className="py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+        <div className="py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
           <p>© 2026 Study Flow — built by scholars, for scholars.</p>
           <div className="flex gap-8">
             <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms</Link>
@@ -106,9 +107,9 @@ export default function Footer() {
       {/* Giant interactive wordmark — black grains on white */}
       <div className="relative w-full select-none">
         <div className="h-[34vw] min-h-[260px] max-h-[520px] w-full">
-          <SandText lines={["STUDY", "FLOW"]} colors={INK_GRAINS} className="w-full h-full cursor-none touch-none" />
+          <SandText lines={["STUDY", "FLOW"]} colors={INK_GRAINS} darkColors={LIGHT_GRAINS} className="w-full h-full cursor-none touch-none" />
         </div>
-        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-slate-400 pointer-events-none">
+        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500 pointer-events-none">
           Drag your cursor through the grains
         </p>
       </div>

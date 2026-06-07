@@ -56,12 +56,12 @@ export default function Home() {
       <section id="features" className="px-6 py-28 lg:py-36">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="max-w-3xl">
-            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">Everything in one place</span>
-            <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 tracking-tight leading-[0.95] mt-5">
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">Everything in one place</span>
+            <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.95] mt-5">
               Built for the way <br />
-              you <span className="text-blue-600">actually study.</span>
+              you <span className="text-blue-600 dark:text-blue-400">actually study.</span>
             </h2>
-            <p className="text-xl text-slate-500 leading-relaxed mt-6">
+            <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6">
               Far more than a to-do list — a complete, offline student workstation that keeps homework, revision and exams moving without the busywork.
             </p>
           </ScrollReveal>
@@ -72,7 +72,7 @@ export default function Home() {
                 <motion.div
                   whileHover={{ y: -8 }}
                   transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="relative h-full overflow-hidden bg-white rounded-[1.9rem] p-8 border border-black/[0.06] shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]"
+                  className="relative h-full overflow-hidden bg-white dark:bg-slate-900 rounded-[1.9rem] p-8 border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]"
                 >
                   {/* splash shape */}
                   <div
@@ -83,8 +83,8 @@ export default function Home() {
                     <div className={`w-16 h-16 ${f.chip} rounded-[1.3rem] flex items-center justify-center text-white mb-7 shadow-[0_14px_30px_-10px_rgba(15,23,42,0.5)]`}>
                       {f.icon}
                     </div>
-                    <h3 className="font-display text-2xl font-semibold text-slate-900 tracking-tight mb-2">{f.title}</h3>
-                    <p className="text-slate-500 leading-relaxed">{f.desc}</p>
+                    <h3 className="font-display text-2xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mb-2">{f.title}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{f.desc}</p>
                   </div>
                 </motion.div>
               </ScrollReveal>
@@ -97,9 +97,9 @@ export default function Home() {
       <section id="desktop" className="px-6 py-20 lg:py-28 scroll-mt-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <ScrollReveal direction="right">
-            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">On the desktop</span>
-            <h2 className="font-display text-5xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[0.95] mt-5 mb-8">
-              A workstation that <span className="text-blue-600">keeps up.</span>
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">On the desktop</span>
+            <h2 className="font-display text-5xl md:text-6xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.95] mt-5 mb-8">
+              A workstation that <span className="text-blue-600 dark:text-blue-400">keeps up.</span>
             </h2>
             <div className="space-y-7">
               {laptopPoints.map((p) => (
@@ -108,8 +108,8 @@ export default function Home() {
                     <Check size={16} strokeWidth={3} />
                   </span>
                   <div>
-                    <h3 className="font-display text-xl font-semibold text-slate-900 mb-1">{p.t}</h3>
-                    <p className="text-slate-500 leading-relaxed">{p.d}</p>
+                    <h3 className="font-display text-xl font-semibold text-slate-900 dark:text-slate-50 mb-1">{p.t}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{p.d}</p>
                   </div>
                 </div>
               ))}
@@ -165,10 +165,10 @@ export default function Home() {
       {/* Closing CTA */}
       <section className="px-6 pb-32 pt-10 text-center">
         <ScrollReveal className="max-w-3xl mx-auto">
-          <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 tracking-tight leading-[0.95]">
-            Ready for a <span className="text-blue-600">calmer</span> semester?
+          <h2 className="font-display text-5xl md:text-7xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.95]">
+            Ready for a <span className="text-blue-600 dark:text-blue-400">calmer</span> semester?
           </h2>
-          <p className="text-xl text-slate-500 leading-relaxed mt-6 max-w-xl mx-auto">
+          <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6 max-w-xl mx-auto">
             Private, offline, and free. Download Study Flow and turn your timetable into a daily rhythm.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
@@ -181,7 +181,7 @@ export default function Home() {
             </Link>
             <Link
               href="/docs"
-              className="inline-flex items-center justify-center gap-2 border border-black/10 bg-white text-slate-900 px-10 py-5 rounded-2xl text-lg font-semibold hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-black/10 dark:border-white/10 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 px-10 py-5 rounded-2xl text-lg font-semibold hover:bg-slate-50 transition-colors"
             >
               <BookOpen size={20} />
               Read the docs

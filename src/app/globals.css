@@ -82,6 +82,11 @@ body {
     @apply left-[100%];
   }
 
+  /* White pill that always stays light (it sits on dark CTA panels). */
+  .btn-on-dark {
+    @apply bg-white text-slate-900 hover:bg-blue-50;
+  }
+
   .rule {
     @apply h-px w-full bg-gradient-to-r from-black/10 via-black/10 to-transparent;
   }
@@ -118,4 +123,52 @@ body {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.32);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Dark mode                                                         */
+/* ------------------------------------------------------------------ */
+
+.dark body {
+  background: #0a0e17;
+  color: #e6ecf7;
+}
+
+.dark .bg-mesh {
+  background-color: #0a0e17;
+}
+
+.dark .grain {
+  mix-blend-mode: screen;
+  opacity: 0.06;
+}
+
+.dark .nav-blur {
+  @apply bg-[#0a0e17]/80 border-white/10;
+}
+
+.dark .glass-container,
+.dark .glass-light,
+.dark .glass-card {
+  @apply bg-white/[0.04] border-white/10;
+}
+
+.dark .text-gradient {
+  @apply from-blue-400 via-blue-400 to-indigo-400;
+}
+
+.dark .rule {
+  @apply from-white/10 via-white/10;
+}
+
+.dark ::selection {
+  background: #3b82f6;
+  color: #0a0e17;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.32);
 }

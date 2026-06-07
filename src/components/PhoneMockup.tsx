@@ -11,13 +11,13 @@ export type PhoneScreenName = "dashboard" | "calendar" | "tasks";
  */
 export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName }) {
   return (
-    <div className="absolute inset-0 bg-white overflow-hidden flex flex-col pt-12 px-5">
+    <div className="absolute inset-0 bg-white dark:bg-slate-900 overflow-hidden flex flex-col pt-12 px-5">
       {screen === "dashboard" && (
         <div className="space-y-6">
           {/* Header */}
           <div className="flex justify-between items-center">
             <div>
-              <h4 className="text-xl font-black text-slate-900 leading-tight">
+              <h4 className="text-xl font-black text-slate-900 dark:text-slate-50 leading-tight">
                 Hello, <br />Scholar
               </h4>
             </div>
@@ -27,8 +27,8 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
                 <span className="text-[10px] font-black text-orange-600">12</span>
               </div>
               <div className="w-10 h-10 bg-blue-50 rounded-xl flex flex-col items-center justify-center">
-                <Trophy size={14} className="text-blue-600 fill-blue-600/20" />
-                <span className="text-[10px] font-black text-blue-700">45</span>
+                <Trophy size={14} className="text-blue-600 dark:text-blue-400 fill-blue-600/20" />
+                <span className="text-[10px] font-black text-blue-700 dark:text-blue-400">45</span>
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
 
           {/* Task List */}
           <div className="space-y-3">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Today&apos;s Focus</p>
+            <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest px-1">Today&apos;s Focus</p>
             {[
               { t: "Networking", s: "20:00", done: true },
               { t: "Javascript", s: "20:30", done: true },
@@ -60,7 +60,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
               <div
                 key={i}
                 className={`p-4 rounded-2xl border flex items-center gap-4 ${
-                  task.done ? "bg-slate-50 border-slate-100 opacity-60" : "bg-white border-slate-100 shadow-sm"
+                  task.done ? "bg-slate-50 dark:bg-white/[0.06] border-slate-100 opacity-60" : "bg-white dark:bg-slate-900 border-slate-100 shadow-sm"
                 }`}
               >
                 <div
@@ -71,8 +71,8 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
                   {task.done && <Check size={10} strokeWidth={4} />}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-xs text-slate-800 truncate">{task.t}</p>
-                  <p className="text-[9px] font-bold text-slate-400 uppercase">{task.s}</p>
+                  <p className="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">{task.t}</p>
+                  <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase">{task.s}</p>
                 </div>
               </div>
             ))}
@@ -82,7 +82,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
 
       {screen === "calendar" && (
         <div className="space-y-6">
-          <h4 className="text-xl font-black text-slate-900">Workload</h4>
+          <h4 className="text-xl font-black text-slate-900 dark:text-slate-50">Workload</h4>
           <div className="grid grid-cols-7 gap-2">
             {[...Array(31)].map((_, i) => (
               <div
@@ -92,7 +92,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
                     ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
                     : [3, 8, 17, 22, 27].includes(i)
                     ? "text-orange-600 bg-orange-50"
-                    : "text-slate-400 bg-slate-50"
+                    : "text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-white/[0.06]"
                 }`}
               >
                 {i + 1}
@@ -101,17 +101,17 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
           </div>
           <div className="bg-orange-50 p-5 rounded-3xl border border-orange-100 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-2xl flex items-center justify-center text-orange-500 shadow-sm">
+              <div className="w-10 h-10 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center text-orange-500 shadow-sm">
                 <Clock size={20} />
               </div>
               <div>
                 <p className="text-[10px] font-black text-orange-600/60 uppercase">Next Deadline</p>
-                <p className="text-sm font-black text-slate-900">DBMS Exam</p>
+                <p className="text-sm font-black text-slate-900 dark:text-slate-50">DBMS Exam</p>
               </div>
             </div>
             <div className="flex justify-between items-end">
               <span className="text-3xl font-black text-orange-600 leading-none">04</span>
-              <span className="text-[10px] font-bold text-slate-400 uppercase">Days Remaining</span>
+              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">Days Remaining</span>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
       {screen === "tasks" && (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h4 className="text-xl font-black text-slate-900">Templates</h4>
+            <h4 className="text-xl font-black text-slate-900 dark:text-slate-50">Templates</h4>
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">+</div>
           </div>
 
@@ -134,7 +134,7 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
                 <div className="flex justify-between items-start">
                   <span
                     className={`text-[8px] font-black px-2 py-1 rounded-full uppercase tracking-widest ${
-                      item.c === "blue" ? "bg-blue-100 text-blue-600" : "bg-orange-100 text-orange-600"
+                      item.c === "blue" ? "bg-blue-100 text-blue-600 dark:text-blue-400" : "bg-orange-100 text-orange-600"
                     }`}
                   >
                     {item.t}
@@ -144,8 +144,8 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
                     <div className="w-1 h-1 bg-slate-200 rounded-full" />
                   </div>
                 </div>
-                <h5 className="font-bold text-slate-800">{item.s}</h5>
-                <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400">
+                <h5 className="font-bold text-slate-800 dark:text-slate-100">{item.s}</h5>
+                <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-slate-500">
                   <CalendarIcon size={10} />
                   {item.d}
                 </div>
@@ -153,8 +153,8 @@ export function PhoneScreen({ screen = "dashboard" }: { screen?: PhoneScreenName
             ))}
           </div>
 
-          <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-            <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest text-center">Auto-Sync Enabled</p>
+          <div className="bg-slate-50 dark:bg-white/[0.06] p-4 rounded-2xl border border-slate-100">
+            <p className="text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest text-center">Auto-Sync Enabled</p>
           </div>
         </div>
       )}

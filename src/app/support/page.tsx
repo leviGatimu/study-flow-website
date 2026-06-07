@@ -68,20 +68,20 @@ export default function Support() {
       {/* Hero */}
       <section className="px-6 pt-40 pb-12 text-center">
         <ScrollReveal className="max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.06] text-blue-600 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-black/[0.06] dark:border-white/10 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-[0.22em] shadow-sm">
             <LifeBuoy size={13} /> Support
           </span>
-          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 tracking-tight leading-[0.9] mt-6">
-            How can we <span className="text-blue-600">help?</span>
+          <h1 className="font-display text-6xl md:text-8xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight leading-[0.9] mt-6">
+            How can we <span className="text-blue-600 dark:text-blue-400">help?</span>
           </h1>
-          <p className="text-xl text-slate-500 leading-relaxed mt-6 max-w-xl mx-auto">
+          <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mt-6 max-w-xl mx-auto">
             Start with the docs, ask the community, or reach out directly — whatever gets you back to studying fastest.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/docs" className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-slate-800 transition-colors">
               <BookOpen size={18} /> Read the docs
             </Link>
-            <a href="https://discord.gg/RQQfJAUCy" className="inline-flex items-center justify-center gap-2 bg-white border border-black/10 text-slate-900 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-50 transition-colors">
+            <a href="https://discord.gg/RQQfJAUCy" className="inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-900 border border-black/10 dark:border-white/10 text-slate-900 dark:text-slate-50 px-8 py-4 rounded-2xl font-semibold hover:bg-slate-50 transition-colors">
               <MessageSquare size={18} /> Join the Discord
             </a>
           </div>
@@ -93,13 +93,13 @@ export default function Support() {
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">
           {categories.map((cat, i) => (
             <ScrollReveal key={cat.title} delay={i * 0.08}>
-              <div className="relative h-full overflow-hidden bg-white rounded-[1.75rem] p-8 border border-black/[0.06] shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]">
+              <div className="relative h-full overflow-hidden bg-white dark:bg-slate-900 rounded-[1.75rem] p-8 border border-black/[0.06] dark:border-white/10 shadow-[0_28px_60px_-34px_rgba(15,23,42,0.3)]">
                 <div className={`absolute -top-9 -right-7 w-36 h-36 ${cat.blob} opacity-60`} style={{ borderRadius: blobRadii[i % blobRadii.length] }} />
                 <div className="relative">
                   <div className={`w-14 h-14 ${cat.chip} rounded-2xl flex items-center justify-center text-white mb-6 shadow-[0_14px_30px_-12px_rgba(15,23,42,0.55)]`}>
                     {cat.icon}
                   </div>
-                  <h2 className="font-display text-2xl font-semibold text-slate-900 tracking-tight mb-5">{cat.title}</h2>
+                  <h2 className="font-display text-2xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mb-5">{cat.title}</h2>
                   <ul className="space-y-1">
                     {cat.links.map((link) => {
                       const Cmp: any = link.href.startsWith("/") ? Link : "a";
@@ -107,7 +107,7 @@ export default function Support() {
                         <li key={link.label}>
                           <Cmp
                             href={link.href}
-                            className="flex items-center justify-between py-2.5 text-slate-600 hover:text-blue-600 font-semibold transition-colors group border-b border-black/[0.05] last:border-0"
+                            className="flex items-center justify-between py-2.5 text-slate-600 dark:text-slate-300 hover:text-blue-600 font-semibold transition-colors group border-b border-black/[0.05] dark:border-white/10 last:border-0"
                           >
                             {link.label}
                             {"external" in link && link.external ? (
@@ -131,19 +131,19 @@ export default function Support() {
       <section className="px-6 py-16 lg:py-24">
         <div className="max-w-3xl mx-auto">
           <ScrollReveal className="text-center mb-12">
-            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-[0.3em]">FAQ</span>
-            <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 tracking-tight mt-4">
+            <span className="text-[11px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-[0.3em]">FAQ</span>
+            <h2 className="font-display text-4xl md:text-5xl font-semibold text-slate-900 dark:text-slate-50 tracking-tight mt-4">
               Frequently asked.
             </h2>
           </ScrollReveal>
           <div className="space-y-4">
             {faqs.map((f) => (
-              <details key={f.q} className="group bg-white rounded-[1.25rem] border border-black/[0.06] shadow-[0_24px_50px_-40px_rgba(15,23,42,0.3)] p-6">
-                <summary className="flex items-center justify-between cursor-pointer list-none font-display text-lg font-semibold text-slate-900">
+              <details key={f.q} className="group bg-white dark:bg-slate-900 rounded-[1.25rem] border border-black/[0.06] dark:border-white/10 shadow-[0_24px_50px_-40px_rgba(15,23,42,0.3)] p-6">
+                <summary className="flex items-center justify-between cursor-pointer list-none font-display text-lg font-semibold text-slate-900 dark:text-slate-50">
                   {f.q}
-                  <ChevronRight size={18} className="text-slate-400 transition-transform group-open:rotate-90" />
+                  <ChevronRight size={18} className="text-slate-400 dark:text-slate-500 transition-transform group-open:rotate-90" />
                 </summary>
-                <p className="text-slate-500 leading-relaxed mt-3 text-[15px]">{f.a}</p>
+                <p className="text-slate-500 dark:text-slate-400 leading-relaxed mt-3 text-[15px]">{f.a}</p>
               </details>
             ))}
           </div>
@@ -167,7 +167,7 @@ export default function Support() {
             </div>
             <a
               href="https://discord.gg/RQQfJAUCy"
-              className="relative z-10 inline-flex items-center gap-3 bg-white text-slate-900 font-semibold py-4 px-9 rounded-2xl hover:bg-blue-50 transition-colors whitespace-nowrap"
+              className="btn-on-dark relative z-10 inline-flex items-center gap-3 font-semibold py-4 px-9 rounded-2xl transition-colors whitespace-nowrap"
             >
               Join the Discord <ArrowUpRight size={18} />
             </a>
