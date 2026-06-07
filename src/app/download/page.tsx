@@ -31,7 +31,7 @@ const platforms = [
     icon: <Monitor size={24} />,
     chip: "bg-blue-600",
     blob: "bg-blue-200",
-    href: "/StudyTrackerSetup.exe",
+    href: "https://media.githubusercontent.com/media/leviGatimu/study-flow-website/main/public/StudyTrackerSetup.exe",
     cta: "Download for Windows",
     available: true,
   },
@@ -103,7 +103,7 @@ export default function DownloadPage() {
             </p>
             <div className="mt-9 flex flex-col items-center gap-4">
               <a
-                href="/StudyTrackerSetup.exe"
+                href="https://media.githubusercontent.com/media/leviGatimu/study-flow-website/main/public/StudyTrackerSetup.exe"
                 className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-slate-900 px-12 py-5 text-lg font-semibold text-white shadow-[0_24px_50px_-16px_rgba(0,0,0,0.6)] transition-transform hover:scale-[1.02] active:scale-95"
               >
                 <Download size={20} />
@@ -232,7 +232,7 @@ export default function DownloadPage() {
               </h2>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="/StudyTrackerSetup.exe"
+                  href="https://media.githubusercontent.com/media/leviGatimu/study-flow-website/main/public/StudyTrackerSetup.exe"
                   className="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-9 py-5 rounded-2xl text-lg font-semibold hover:bg-blue-50 transition-colors"
                 >
                   <Download size={20} /> Download free
